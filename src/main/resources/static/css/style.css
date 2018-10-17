@@ -1,0 +1,140 @@
+html,
+body {
+  height: 100%;
+}
+
+/* =========================================
+                Preloader
+============================================ */
+
+#preloader {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+#status {
+  background-image: url('../img/preloader.gif');
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -85px;
+  margin-left: -85px;
+}
+
+
+/* =========================================
+                Home
+============================================ */
+
+#home {
+  background: none;
+  height: 100%;
+}
+
+#home-bg-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+  background: url('../video/home.jpg') no-repeat;
+  background-size: cover;
+}
+
+#home-content {
+  width: 100%;
+  height: 100%;
+}
+
+#home-content-inner {
+  position: absolute;
+  bottom: 15%;
+  left: 80px;
+}
+
+#home-content-inner h1 {
+  color: #fff;
+  font-size: 90px;
+  font-weight: 100;
+  margin: 15px;
+  display: inline-block;
+  font-family: 'Pacifico', cursive;
+  -webkit-animation-delay: 1s;
+  -webkit-animation-duration: 2s;
+}
+
+#home-btn {
+  -webkit-animation-delay: 1s;
+  -webkit-animation-duration: 2s;
+}
+.btn-general {
+  font-family: 'Raleway', sans-serif;
+  border-radius: 28px;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin: 0 6px;
+  padding: 12px 46px 12px 46px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.btn-home {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.btn-home:hover,
+.btn-home:focus {
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.btn-yellow {
+  color: #fff;
+  border: 1px solid #f4c613;
+  background-color: #f4c613;
+}
+
+.btn-yellow:hover,
+.btn-yellow:focus {
+  color: #fff;
+  background-color: #212226;
+  border: 1px solid #212226;
+}
+
+.btn-white {
+  color: #212226;
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+
+.btn-white:hover,
+.btn-white:focus {
+  color: #fff;
+  background-color: #212226;
+  border: 1px solid #212226;
+}
+
+.btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 3px 15px;
+  border-radius: 4px;
+  font-size: 22px;
+  display: none;
+}
