@@ -18,8 +18,10 @@ public class BookService {
     private AuthorService authorService;
     private PublisherService publisherService;
 
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, AuthorService authorService, PublisherService publisherService) {
         this.bookRepository = bookRepository;
+        this.authorService = authorService;
+        this.publisherService = publisherService;
     }
 
     public Set<Book> getAllBooks() {
@@ -39,14 +41,14 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
-    public Book addBook(Book book) {
+    public void saveBook(Book book) {
         Author author = book.getAuthor();
         authorService.isAuthorExist(book, author);
 
         Publisher publisher = book.getPublisher();
         publisherService.isPublisherExist(book, publisher);
 
-        return book;
+        bookRepository.save(book);
     }
 
     public void updateBook(Book book) {

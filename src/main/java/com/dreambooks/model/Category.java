@@ -8,10 +8,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
-@Entity
 public class Category {
-
+/*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -64,5 +62,5 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", books=" + books +
                 '}';
-    }
+    }*/
 }

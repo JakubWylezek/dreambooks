@@ -16,39 +16,20 @@
 
 <body>
 
-<section class="books">
+<form action="#" th:action="@{/books/save}" th:object="${book}" method="post">
 
-    <div class="container">
+    <p>Title: <input type="text" th:field="*{title}"></p>
+    <p>Price: <input type="text" th:field="*{price}"></p>
+    <p>Number of pages: <input type="text" th:field="*{pages}"></p>
+    <p>Author <input type="text" th:field="*{author.name}"</p>
+    <p>Publisher <input type="text" th:field="*{publisher.name}"></p>
 
-        <table class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>View</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="book : ${books}">
-                <!--/*@thymesVar id="book" type="com.bookstore.model.Book"*/-->
-                <th th:text="${book.id}"></th>
-                <th th:text="${book.title}"></th>
-                <th th:text="${book.price}"></th>
-                <th><a href="#" th:href="@{'/books/show/' + ${book.id}}">VIEW</a></th>
-                <th><a href="#" th:href="@{'/books/update/' + ${book.id}}">UPDATE</a></th>
-                <th><a href="#" th:href="@{'/books/delete/' + ${book.id}}">DELETE</a></th>
-            </tr>
-            </tbody>
-        </table>
+    <p><input type="submit" value="Submit"/> </p>
+</form>
 
-        <h2>ADD BOOK</h2>
-        <a href="#" th:href="@{/books/add}" class="btn btn-success">ADD</a>
-    </div>
 
-</section>
+
+
 
 
 <script th:src="@{https://code.jquery.com/jquery-3.3.1.min.js}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -63,7 +44,5 @@
     //Get the current year for the copyright
     $('#year').text(new Date().getFullYear());
 </script>
-
 </body>
-
 </html>
