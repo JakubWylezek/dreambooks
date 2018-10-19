@@ -14,15 +14,18 @@ public class AdminPanelController {
         this.bookService = bookService;
     }
 
-    @RequestMapping("/adminpanel/index")
-    public String getAllOrders() {
-        return "adminpanel/index";
+    /*
+    Change it after to getOrders
+     */
+    @RequestMapping("/adminpanel")
+    public String getAdminPanel() {
+        return "/adminpanel/index";
     }
 
     @RequestMapping("/adminpanel/books")
     public String getAllBooks(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
 
-        return "adminpanel/books";
+        return "/adminpanel/books";
     }
 }
