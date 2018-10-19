@@ -77,17 +77,17 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <a href="index.html" class="btn btn-light btn-block">
+          <a href="#" class="btn btn-light btn-block" th:href="@{/adminpanel/books}">
             <i class="fas fa-arrow-left"></i> Back To Dashboard
           </a>
         </div>
         <div class="col-md-3">
-          <a href="index.html" class="btn btn-success btn-block">
+          <button type="submit" form="update-form" class="btn btn-success btn-block">
             <i class="fas fa-check"></i> Save Changes
-          </a>
+          </button>
         </div>
         <div class="col-md-3">
-          <a href="index.html" class="btn btn-danger btn-block">
+          <a href="#" class="btn btn-danger btn-block" th:href="@{'/adminpanel/book/delete/' + ${book.id}}">
             <i class="fas fa-trash"></i> Delete Book
           </a>
         </div>
@@ -105,7 +105,8 @@
               <h4>Edit Book</h4>
             </div>
             <div class="card-body">
-              <form th:object="${book}">
+              <form id="update-form" action="#" th:object="${book}" th:action="@{/adminpanel/book/save}" method="post">
+                <input type="hidden" th:field="*{id}" class="form-control"/>
                 <div class="form-group">
                   <label>Title</label>
                   <input type="text" class="form-control" th:field="*{title}"/>
