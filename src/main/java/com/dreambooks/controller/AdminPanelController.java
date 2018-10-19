@@ -3,6 +3,7 @@ package com.dreambooks.controller;
 import com.dreambooks.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -27,5 +28,12 @@ public class AdminPanelController {
         model.addAttribute("books", bookService.getAllBooks());
 
         return "/adminpanel/books";
+    }
+
+    @RequestMapping("/adminpanel/book/{id}")
+    public String getBookById(@PathVariable String id, Model model) {
+        model.addAttribute("book", bookService.getBookById(new Long(id)));
+
+        return "/adminpanel/bookdetails";
     }
 }

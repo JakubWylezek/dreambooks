@@ -113,10 +113,10 @@
                   <td th:text="${book.title}"></td>
                   <td th:text="${book.author.name}"></td>
                   <td th:text="${book.publisher.name}"></td>
-                  <td><!--
-                    <a href="#" th:href="@{'/adminpanel/bookdetails/' + ${book.id}}" class="btn btn-secondary">
+                  <td>
+                    <a href="#" th:href="@{'/adminpanel/book/' + ${book.id}}" class="btn btn-secondary">
                       <i class="fas fa-angle-double-right"></i> Details
-                    </a>-->
+                    </a>
                   </td>
                 </tr>
                 </tr>
