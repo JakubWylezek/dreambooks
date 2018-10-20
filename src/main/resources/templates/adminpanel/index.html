@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -16,7 +16,7 @@
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
-      <a href="index.html" class="navbar-brand">Blogen</a>
+      <a href="index.html" class="navbar-brand">Dreambooks</a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,7 +26,7 @@
             <a href="index.html" class="nav-link active">Dashboard</a>
           </li>
           <li class="nav-item px-2">
-            <a href="posts.html" class="nav-link">Posts</a>
+            <a href="#" class="nav-link" th:href="@{'/adminpanel/books'}">Books</a>
           </li>
           <li class="nav-item px-2">
             <a href="categories.html" class="nav-link">Categories</a>
