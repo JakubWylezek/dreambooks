@@ -1,7 +1,9 @@
 package com.dreambooks.controller;
 
 import com.dreambooks.model.Book;
+import com.dreambooks.service.AuthorService;
 import com.dreambooks.service.BookService;
+import com.dreambooks.service.PublisherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminPanelController {
 
     private BookService bookService;
+    private AuthorService authorService;
+    private PublisherService publisherService;
 
-    public AdminPanelController(BookService bookService) {
+    public AdminPanelController(BookService bookService, AuthorService authorService, PublisherService publisherService) {
         this.bookService = bookService;
+        this.authorService = authorService;
+        this.publisherService = publisherService;
     }
 
     /*
@@ -35,6 +41,8 @@ public class AdminPanelController {
     @RequestMapping("/adminpanel/book/{id}")
     public String getBookById(@PathVariable String id, Model model) {
         model.addAttribute("book", bookService.getBookById(new Long(id)));
+        model.addAttribute("authors", authorService.getAllAuthors());
+        model.addAttribute("publishers", publisherService.getAllPublishers());
 
         return "/adminpanel/bookdetails";
     }

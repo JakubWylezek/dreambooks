@@ -8,3 +8,12 @@ $(window).on('load', function() {
     .delay(350)
     .fadeOut('slow');
 });
+
+$("#authorInput").prop("disabled", true);
+
+$("#authorBox").on("change", function () {
+    $(this).next().prop("disabled", !$(this).prop("checked"));
+});
+
+$('#year').text(new Date().getFullYear());
+

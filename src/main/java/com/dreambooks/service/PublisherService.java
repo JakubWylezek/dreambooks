@@ -5,6 +5,9 @@ import com.dreambooks.model.Publisher;
 import com.dreambooks.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class PublisherService {
 
@@ -16,6 +19,13 @@ public class PublisherService {
 
     public Publisher findByName(String name) {
         return publisherRepository.findByName(name);
+    }
+
+    public Set<Publisher> getAllPublishers() {
+        Set<Publisher> publishers = new HashSet<>();
+        publisherRepository.findAll().iterator().forEachRemaining(publishers::add);
+
+        return publishers;
     }
 
     public void isPublisherExist(Book book, Publisher publisher) {

@@ -5,6 +5,9 @@ import com.dreambooks.model.Book;
 import com.dreambooks.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class AuthorService {
 
@@ -14,6 +17,12 @@ public class AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    public Set<Author> getAllAuthors() {
+        Set<Author> authors = new HashSet<>();
+        authorRepository.findAll().iterator().forEachRemaining(authors::add);
+
+        return authors;
+    }
     public Author findByName(String name) {
         return authorRepository.findByName(name);
     }
