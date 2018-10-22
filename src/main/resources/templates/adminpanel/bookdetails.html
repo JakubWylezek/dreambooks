@@ -132,7 +132,7 @@
                             <input id="authorBox" type="checkbox" class="form-check-input"/> New Author
                           </label>
                         </div>
-                        <input id="authorInput" class="form-control mr-2" type="text" placeholder="New Author" th:value="*{author.name}" disabled/>
+                        <input id="authorInput" class="form-control mr-2" type="text" placeholder="New Author" th:field="*{author.name}" disabled/>
                       </div>
                     </div>
                   </div>
@@ -156,7 +156,7 @@
                             <input id="publisherBox" type="checkbox" class="form-check-input" /> New Publisher
                           </label>
                         </div>
-                        <input id="publisherInput" class="form-control mr-2" type="text" placeholder="New Publisher" th:value="*{publisher.name}" disabled/>
+                        <input id="publisherInput" class="form-control mr-2" type="text" placeholder="New Publisher" th:field="*{publisher.name}" disabled/>
                       </div>
                     </div>
                   </div>
@@ -214,6 +214,15 @@
 
   <script>
     // Get the current year for the copyright
+    document.getElementById('authorBox').onchange = function() {
+        document.getElementById('authorInput').disabled = !this.checked;
+        document.getElementById('authorSelect').disabled = this.checked;
+    }
+
+    document.getElementById('publisherBox').onchange = function() {
+        document.getElementById('publisherInput').disabled = !this.checked;
+        document.getElementById('publisherSelect').disabled = this.checked;
+    }
 
     CKEDITOR.replace('editor1');
 
