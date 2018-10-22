@@ -77,8 +77,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
-            <i class="fas fa-plus"></i> Add Post
+          <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addBookModal">
+            <i class="fas fa-plus"></i> Add Book
           </a>
         </div>
         <div class="col-md-3">
@@ -238,47 +238,91 @@
 
   <!-- MODALS -->
 
-  <!-- ADD POST MODAL -->
-  <div class="modal fade" id="addPostModal">
+  <!-- ADD BOOK MODAL -->
+  <div class="modal fade" id="addBookModal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title">Add Post</h5>
+          <h5 class="modal-title">Add Book</h5>
           <button class="close" data-dismiss="modal">
             <span>&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
+          <form id="add-form" action="#" th:object="${book}" th:action="@{/adminpanel/book/save}" method="post">
             <div class="form-group">
               <label>Title</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" th:field="*{title}" placeholder="Title">
             </div>
             <div class="form-group">
-              <label>Category</label>
-              <select class="form-control">
-                <option value="">Web Development</option>
-                <option value="">Tech Gadgets</option>
-                <option value="">Business</option>
-                <option value="">Health & Wellness</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="image">Upload Image</label>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="image">
-                <label for="image" class="custom-file-label">Choose File</label>
+              <label>Author</label>
+              <div class="form-row">
+                <div class="col-lg-6">
+                  <select id="authorSelect" th:field="*{author.name}" class="form-control">
+                    <!--/*@thymesVar id="author" type="com.dreambooks.model.Author"*/-->
+                    <option th:each="author : ${authors}"
+                            th:value="${author.name}"
+                            th:text="${author.name}"></option>
+                  </select>
+                </div>
+                <div class="col">
+                  <div class="form-inline">
+                    <div class="form-check">
+                      <label class="form-check-label mr-3">
+                        <input id="authorBox" type="checkbox" class="form-check-input"/> New Author
+                      </label>
+                    </div>
+                    <input id="authorInput" class="form-control mr-2" type="text" placeholder="New Author" th:field="*{author.name}" disabled/>
+                  </div>
+                </div>
               </div>
-              <small class="form-text text-muted">Max Size 3mb</small>
             </div>
             <div class="form-group">
-              <label>Body</label>
-              <textarea name="editor1" class="form-control"></textarea>
+              <label>Publisher</label>
+              <div class="form-row">
+                <div class="col-lg-6">
+                  <select id="publisherSelect" th:field="*{publisher.name}" class="form-control">
+                    <!--/*@thymesVar id="publisher" type="com.dreambooks.model.Publisher"*/-->
+                    <option th:each="publisher : ${publishers}"
+                            th:value="${publisher.name}"
+                            th:text="${publisher.name}"></option>
+                  </select>
+                </div>
+                <div class="col">
+                  <div class="form-inline">
+                    <div class="form-check">
+                      <label class="form-check-label mr-2">
+                        <input id="publisherBox" type="checkbox" class="form-check-input" /> New Publisher
+                      </label>
+                    </div>
+                    <input id="publisherInput" class="form-control mr-2" type="text" placeholder="New Publisher" th:field="*{publisher.name}" disabled/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <label>Price</label>
+                  <input type="text" class="form-control" placeholder="Price" th:field="*{price}">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label>Pages</label>
+                  <input type="text" class="form-control" placeholder="Pages" th:field="*{pages}">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea name="editor1" class="form-control" th:field="*{description}"></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+          <button class="btn btn-primary" form="add-form" type="submit">Add Book</button>
         </div>
       </div>
     </div>
@@ -357,6 +401,17 @@
   <script th:src="@{/js/script.js}"></script>
 
   <script>
+
+      document.getElementById('authorBox').onchange = function() {
+          document.getElementById('authorInput').disabled = !this.checked;
+          document.getElementById('authorSelect').disabled = this.checked;
+      }
+
+      document.getElementById('publisherBox').onchange = function() {
+          document.getElementById('publisherInput').disabled = !this.checked;
+          document.getElementById('publisherSelect').disabled = this.checked;
+      }
+
     CKEDITOR.replace('editor1');
   </script>
 </body>

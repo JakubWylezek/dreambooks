@@ -4,6 +4,7 @@ import com.dreambooks.model.Book;
 import com.dreambooks.service.AuthorService;
 import com.dreambooks.service.BookService;
 import com.dreambooks.service.PublisherService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +28,11 @@ public class AdminPanelController {
     Change it after to getOrders
      */
     @RequestMapping("/adminpanel")
-    public String getAdminPanel() {
+    public String getAdminPanel(Model model) {
+        model.addAttribute("book", new Book());
+        model.addAttribute("authors", authorService.getAllAuthors());
+        model.addAttribute("publishers", publisherService.getAllPublishers());
+
         return "/adminpanel/index";
     }
 
