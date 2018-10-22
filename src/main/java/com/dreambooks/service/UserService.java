@@ -16,10 +16,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    private Set<User> getAllUsers() {
+    public Set<User> getAllUsers() {
         Set<User> users = new HashSet<>();
         userRepository.findAll().iterator().forEachRemaining(users::add);
 
         return users;
+    }
+
+    public Long countAllUsers() {
+        return userRepository.countUsers();
     }
 }
