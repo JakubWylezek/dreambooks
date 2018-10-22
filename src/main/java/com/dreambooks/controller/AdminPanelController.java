@@ -39,41 +39,5 @@ public class AdminPanelController {
         return "/adminpanel/index";
     }
 
-    @RequestMapping("/adminpanel/books")
-    public String getAllBooks(Model model) {
-        model.addAttribute("books", bookService.getAllBooks());
-        model.addAttribute("searchObjects", new SearchObjects());
 
-        return "/adminpanel/books";
-    }
-
-    @RequestMapping("/adminpanel/books/search")
-    public String setSearch(@ModelAttribute SearchObjects searchObjects, Model model) {
-        model.addAttribute("books", bookService.getBooksByTitle(searchObjects.getSearchDescription()));
-
-        return "/adminpanel/books";
-    }
-
-    @RequestMapping("/adminpanel/book/{id}")
-    public String getBookById(@PathVariable String id, Model model) {
-        model.addAttribute("book", bookService.getBookById(new Long(id)));
-        model.addAttribute("authors", authorService.getAllAuthors());
-        model.addAttribute("publishers", publisherService.getAllPublishers());
-
-        return "/adminpanel/bookdetails";
-    }
-
-    @RequestMapping("/adminpanel/book/save")
-    public String saveBook(@ModelAttribute Book book) {
-        bookService.saveBook(book);
-
-        return "redirect:/adminpanel/books";
-    }
-
-    @RequestMapping("/adminpanel/book/delete/{id}")
-    public String deleteBook(@PathVariable String id) {
-        bookService.deleteBook(new Long(id));
-
-        return "redirect:/adminpanel/books";
-    }
 }

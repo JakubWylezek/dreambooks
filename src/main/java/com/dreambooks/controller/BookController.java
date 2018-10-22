@@ -1,62 +1,63 @@
 package com.dreambooks.controller;
 
-import com.dreambooks.model.Author;
 import com.dreambooks.model.Book;
-import com.dreambooks.model.Category;
-import com.dreambooks.model.Publisher;
+import com.dreambooks.service.AuthorService;
 import com.dreambooks.service.BookService;
+import com.dreambooks.service.PublisherService;
+import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Controller
 public class BookController {
 
     private BookService bookService;
+    private AuthorService authorService;
+    private PublisherService publisherService;
 
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, AuthorService authorService, PublisherService publisherService) {
         this.bookService = bookService;
+        this.authorService = authorService;
+        this.publisherService = publisherService;
     }
-
-    @RequestMapping("/books")
+    @RequestMapping("/adminpanel/books")
     public String getAllBooks(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
-        return "/books/index";
+        model.addAttribute("searchObjects", new SearchObjects());
+
+        return "/adminpanel/books";
     }
 
-    @RequestMapping("/books/show/{id}")
-    public String getBook(@PathVariable String id, Model model) {
+    @RequestMapping("/adminpanel/books/search")
+    public String setSearch(@ModelAttribute SearchObjects searchObjects, Model model) {
+        model.addAttribute("books", bookService.getBooksByTitle(searchObjects.getSearchDescription()));
+
+        return "/adminpanel/books";
+    }
+
+    @RequestMapping("/adminpanel/book/{id}")
+    public String getBookById(@PathVariable String id, Model model) {
         model.addAttribute("book", bookService.getBookById(new Long(id)));
-        return "books/show";
+        model.addAttribute("authors", authorService.getAllAuthors());
+        model.addAttribute("publishers", publisherService.getAllPublishers());
+
+        return "/adminpanel/bookdetails";
     }
 
-    @RequestMapping("/books/delete/{id}")
-    public String deleteBook(@PathVariable String id) {
-        bookService.deleteBook(new Long(id));
-        return "redirect:/books";
-    }
-
-    @RequestMapping("/books/update/{id}")
-    public String updateBook(@PathVariable String id, Model model) {
-        model.addAttribute("book", bookService.getBookById(new Long(id)));
-
-        return "books/edit";
-    }
-
-    @RequestMapping("/books/add")
-    public String addBook(Model model) {
-        model.addAttribute("book", new Book());
-        return "books/add";
-    }
-
-    @RequestMapping("/books/save")
+    @RequestMapping("/adminpanel/book/save")
     public String saveBook(@ModelAttribute Book book) {
         bookService.saveBook(book);
-        return "redirect:/books";
+
+        return "redirect:/adminpanel/books";
+    }
+
+    @RequestMapping("/adminpanel/book/delete/{id}")
+    public String deleteBook(@PathVariable String id) {
+        bookService.deleteBook(new Long(id));
+
+        return "redirect:/adminpanel/books";
     }
 }
