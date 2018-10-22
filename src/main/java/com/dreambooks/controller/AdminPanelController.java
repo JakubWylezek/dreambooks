@@ -4,11 +4,13 @@ import com.dreambooks.model.Book;
 import com.dreambooks.service.AuthorService;
 import com.dreambooks.service.BookService;
 import com.dreambooks.service.PublisherService;
+import com.dreambooks.utils.SearchObjects;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -32,6 +34,7 @@ public class AdminPanelController {
         model.addAttribute("book", new Book());
         model.addAttribute("authors", authorService.getAllAuthors());
         model.addAttribute("publishers", publisherService.getAllPublishers());
+        model.addAttribute("countBooks", bookService.countAllBooks());
 
         return "/adminpanel/index";
     }
@@ -39,6 +42,14 @@ public class AdminPanelController {
     @RequestMapping("/adminpanel/books")
     public String getAllBooks(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
+        model.addAttribute("searchObjects", new SearchObjects());
+
+        return "/adminpanel/books";
+    }
+
+    @RequestMapping("/adminpanel/books/search")
+    public String setSearch(@ModelAttribute SearchObjects searchObjects, Model model) {
+        model.addAttribute("books", bookService.getBooksByTitle(searchObjects.getSearchDescription()));
 
         return "/adminpanel/books";
     }

@@ -64,4 +64,12 @@ public class BookService {
         Publisher publisher = publisherService.findByName(nameOfPublisher);
         return publisher.getBooks();
     }
+
+    public Set<Book> getBooksByTitle(String title) {
+        return bookRepository.findBooksWithPartOfNames(title);
+    }
+
+    public Long countAllBooks() {
+        return bookRepository.countBooks();
+    }
 }
