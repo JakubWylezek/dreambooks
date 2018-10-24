@@ -1,6 +1,7 @@
 package com.dreambooks.controller;
 
 import com.dreambooks.service.BookService;
+import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ public class MainPageController {
     @RequestMapping("/main")
     public String getMainPage(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
+        model.addAttribute("searchObjects", new SearchObjects());
 
         return "/mainpage/index";
     }

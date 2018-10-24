@@ -25,7 +25,7 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top animated fadeInDown">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Dreambooks</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -38,23 +38,23 @@
             <a class="nav-link" href="#">Shopping Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Admin Panel</a>
+            <a class="nav-link" th:href="@{/adminpanel}">Admin Panel</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <section id="search" class="animated fadeInDown delay-0.5s">
+  <section id="search">
     <div class="container">
       <div class="row">
         <div class="col-md-4">
           <img src="img/logo.PNG" alt="">
         </div>
         <div class="col-md-4 offset-md-4">
-          <form class="search">
+          <form class="search" th:object="${searchObjects}" th:action="@{'/main/books/search'}" method="post">
             <div class="search__wrapper">
-              <input type="text" name="" placeholder="Search for..." class="search__field">
+              <input type="text" name="" placeholder="Search for..." class="search__field" th:field="*{searchDescription}">
               <button type="submit" class="fa fa-search search__icon"></button>
             </div>
           </form>
@@ -63,7 +63,7 @@
     </div>
   </section>
 
-  <section id="category" class="animated zoomIn delay-1s">
+  <section id="category">
     <div class="text-center">
       <div class="container">
         <div class="btn-group p-1 mt-5 mb-5">
@@ -85,33 +85,34 @@
     </div>
   </section>
 
-  <div class="container animated zoomIn delay-1s">
+  <div class="container animated zoomIn delay-0.5s">
     <h2>Books</h2>
   </div>
   <hr>
 
-  <section id="books" class="animated zoomIn delay-2s">
+  <section id="books" class="animated zoomIn delay-0.5s">
     <div class="text-center">
       <div class="container">
         <div class="row">
+          <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
           <div class="col-md-3 col-sm-6 p-10" th:each="book : ${books}">
             <div class="product-grid6">
               <div class="product-image6">
                 <a href="#">
-                  <img class="pic-1" src="http://s.lubimyczytac.pl/upload/books/4821000/4821058/628377-352x500.jpg">
+                  <img class="pic-1" th:src="${book.coverURL}">
                 </a>
               </div>
               <div class="product-content">
-                <h5 class="title"><a href="#" th:text="${book.title}">Men's Shirt</a></h5>
+                <h5 class="title">
+                <a href="#" th:text="${book.title}">Men's Shirt</a></h5>
                 <div class="price" th:text="'$'+${book.price}">
                 </div>
               </div>
               <ul class="social">
                 <li><a th:href="@{'/main/book/' + ${book.id}}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                <li><a th:href="@{'/main/book/' + ${book.id}}"  data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="#"  data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
               </ul>
             </div>
-            <a th:href="@{'/main/book/' + ${book.id}}">A</a>
           </div>
 
         </div>

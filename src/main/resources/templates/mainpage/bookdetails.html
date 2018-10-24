@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <!-- Custom styles for this template -->
     <link href="css/shop-homepage.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/hover.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" th:href="@{css/main-page.css}">
+    <link rel="stylesheet" th:href="@{css/hover.css}">
+    <link rel="stylesheet" th:href="@{css/animate.css}">
 
 </head>
 
@@ -105,7 +106,7 @@
             <p class="h2" th:text="${book.title}"></p>
             <div class="row">
                 <div class="col-5">
-                    <img src="http://s.lubimyczytac.pl/upload/books/4821000/4821058/628377-352x500.jpg" alt="">
+                    <img th:src="${book.coverURL}" alt="">
                 </div>
                 <div class="col-6 text-left">
                     <p class="h4"><span class="text-muted">Autor: </span><span th:text="${book.author.name}"></span></p>
@@ -147,11 +148,11 @@
 
 
 <!-- Bootstrap core JavaScript -->
-<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+<script th:src="@{http://code.jquery.com/jquery-3.3.1.min.js}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js}" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
 
 <script>

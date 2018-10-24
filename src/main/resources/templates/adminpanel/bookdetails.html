@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
-        crossorigin="anonymous">
+    crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+    crossorigin="anonymous">
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <title>Dreambooks</title>
 </head>
 
 <body>
 
-<!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
+  <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
       <a href="#" class="navbar-brand" th:href="@{'/adminpanel'}">Dreambooks Admin Panel</a>
@@ -68,7 +68,7 @@
       <div class="row">
         <div class="col-md-6">
           <h1 th:text="${book.title}">
-            </h1>
+          </h1>
         </div>
       </div>
     </div>
@@ -108,31 +108,30 @@
             </div>
             <div class="card-body">
               <form id="update-form" action="#" th:object="${book}" th:action="@{/adminpanel/book/save}" method="post">
-                <input type="hidden" th:field="*{id}" class="form-control"/>
+                <input type="hidden" th:field="*{id}" class="form-control" />
                 <div class="form-group">
                   <label>Title</label>
-                  <input type="text" class="form-control" th:field="*{title}"/>
+                  <input type="text" class="form-control" th:field="*{title}" />
                 </div>
                 <div class="form-group">
                   <label>Author</label>
                   <div class="form-row">
-                      <div class="col-lg-6">
-                          <select id="authorSelect" th:field="*{author.name}" class="form-control">
-                              <!--/*@thymesVar id="author" type="com.dreambooks.model.Author"*/-->
-                              <option th:each="author : ${authors}"
-                                      th:value="${author.name}"
-                                      th:text="${author.name}"
-                                      th:selected="${author.id == book.author.id}"></option>
-                          </select>
-                      </div>
+                    <div class="col-lg-6">
+                      <select id="authorSelect" th:field="*{author.name}" class="form-control">
+                        <!--/*@thymesVar id="author" type="com.dreambooks.model.Author"*/-->
+                        <option th:each="author : ${authors}" th:value="${author.name}" th:text="${author.name}"
+                          th:selected="${author.id == book.author.id}"></option>
+                      </select>
+                    </div>
                     <div class="col">
                       <div class="form-inline">
                         <div class="form-check">
                           <label class="form-check-label mr-3">
-                            <input id="authorBox" type="checkbox" class="form-check-input"/> New Author
+                            <input id="authorBox" type="checkbox" class="form-check-input" /> New Author
                           </label>
                         </div>
-                        <input id="authorInput" class="form-control mr-2" type="text" placeholder="New Author" th:field="*{author.name}" disabled/>
+                        <input id="authorInput" class="form-control mr-2" type="text" placeholder="New Author" th:field="*{author.name}"
+                          disabled />
                       </div>
                     </div>
                   </div>
@@ -141,13 +140,11 @@
                   <label>Publisher</label>
                   <div class="form-row">
                     <div class="col-lg-6">
-                          <select id="publisherSelect" th:field="*{publisher.name}" class="form-control">
-                              <!--/*@thymesVar id="publisher" type="com.dreambooks.model.Publisher"*/-->
-                              <option th:each="publisher : ${publishers}"
-                                      th:value="${publisher.name}"
-                                      th:text="${publisher.name}"
-                                      th:selected="${publisher.id == book.publisher.id}"></option>
-                          </select>
+                      <select id="publisherSelect" th:field="*{publisher.name}" class="form-control">
+                        <!--/*@thymesVar id="publisher" type="com.dreambooks.model.Publisher"*/-->
+                        <option th:each="publisher : ${publishers}" th:value="${publisher.name}" th:text="${publisher.name}"
+                          th:selected="${publisher.id == book.publisher.id}"></option>
+                      </select>
                     </div>
                     <div class="col">
                       <div class="form-inline">
@@ -156,30 +153,35 @@
                             <input id="publisherBox" type="checkbox" class="form-check-input" /> New Publisher
                           </label>
                         </div>
-                        <input id="publisherInput" class="form-control mr-2" type="text" placeholder="New Publisher" th:field="*{publisher.name}" disabled/>
+                        <input id="publisherInput" class="form-control mr-2" type="text" placeholder="New Publisher"
+                          th:field="*{publisher.name}" disabled />
                       </div>
                     </div>
                   </div>
                 </div>
-                  <div class="form-row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label>Price</label>
-                        <input type="text" class="form-control" placeholder="Price" th:field="*{price}">
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label>Pages</label>
-                        <input type="text" class="form-control" placeholder="Pages" th:field="*{pages}">
-                      </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label>Price</label>
+                      <input type="text" class="form-control" placeholder="Price" th:field="*{price}">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label>Description</label>
-                    <textarea name="editor1" class="form-control" th:field="*{description}"></textarea>
+                  <div class="col">
+                    <div class="form-group">
+                      <label>Pages</label>
+                      <input type="text" class="form-control" placeholder="Pages" th:field="*{pages}">
+                    </div>
                   </div>
-               </form>
+                </div>
+                <div class="form-group">
+                  <label>Cover URL</label>
+                  <input type="text" class="form-control" th:field="*{coverURL}" />
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea name="editor1" class="form-control" th:field="*{description}"></textarea>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -204,24 +206,24 @@
 
 
   <script th:src="@{https://code.jquery.com/jquery-3.3.1.min.js}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-          crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
   <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js}" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-          crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
   <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js}" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-          crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 
   <script th:src="@{/js/script.js}"></script>
 
   <script>
     // Get the current year for the copyright
-    document.getElementById('authorBox').onchange = function() {
-        document.getElementById('authorInput').disabled = !this.checked;
-        document.getElementById('authorSelect').disabled = this.checked;
+    document.getElementById('authorBox').onchange = function () {
+      document.getElementById('authorInput').disabled = !this.checked;
+      document.getElementById('authorSelect').disabled = this.checked;
     }
 
-    document.getElementById('publisherBox').onchange = function() {
-        document.getElementById('publisherInput').disabled = !this.checked;
-        document.getElementById('publisherSelect').disabled = this.checked;
+    document.getElementById('publisherBox').onchange = function () {
+      document.getElementById('publisherInput').disabled = !this.checked;
+      document.getElementById('publisherSelect').disabled = this.checked;
     }
 
     CKEDITOR.replace('editor1');
