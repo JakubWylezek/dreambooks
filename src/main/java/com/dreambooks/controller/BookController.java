@@ -61,8 +61,8 @@ public class BookController {
     }
 
 
-    @GetMapping(value = "/main/book/{id}")
-    public String getMainBookById(String id, Model model) {
+    @RequestMapping("/main/book/{id}")
+    public String getMainBookById(@PathVariable String id, Model model) {
         model.addAttribute("book", bookService.getBookById(new Long(id)));
 
         return "/mainpage/bookdetails";

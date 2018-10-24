@@ -1,49 +1,162 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Dreambook</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dreambooks</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <!-- Custom styles for this template -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/hover.css">
+    <link rel="stylesheet" href="css/animate.css">
+
 </head>
+
 <body>
-<div class="modal fade" id="bookDetail">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-yellow text-black">
-                <h5 class="modal-title">Book detail</h5>
-                <button class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Dreambooks</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Shopping Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin Panel</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section id="search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="img/logo.PNG" alt="">
             </div>
-            <div class="modal-body">
-                <p class="h2"></p>
-                <div class="row">
-                    <div class="col-5">
-                        <img src="http://s.lubimyczytac.pl/upload/books/4821000/4821058/628377-352x500.jpg" alt="">
+            <div class="col-md-4 offset-md-4">
+                <form class="search">
+                    <div class="search__wrapper">
+                        <input type="text" name="" placeholder="Search for..." class="search__field">
+                        <button type="submit" class="fa fa-search search__icon"></button>
                     </div>
-                    <div class="col-6 offset-1">
-                        <p class="h4"><span class="text-muted">Autor:</span> J.R.R. Tolkien</p>
-                        <p class="h4"><span class="text-muted">Publisher:</span> Alan Lee</p>
-                        <p class="h4"><span class="text-muted">Pages:</span> 500</p>
-                        <hr>
-                        <p class="h3">Price: <span>$25.00</span></p>
-                        <div class="form-group">
-                <textarea class="form-control" rows="13">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati pariatur temporibus cumque tempora perspiciatis accusantium officiis voluptatem ea hic minima, repellendus dolorem fuga nulla incidunt vero, tempore, enim aperiam mollitia!
-                Necessitatibus laboriosam odio error laudantium tempora, impedit quis nihil voluptate, earum nostrum, beatae assumenda iste optio fugit corporis sit illum amet recusandae deleniti praesentium modi harum asperiores! Recusandae, laborum officia!
-                Accusantium in, a, error nemo labore quasi quos ipsa accusamus ratione consequatur, recusandae eveniet. Officiis facilis illum ex esse odit officia deserunt error soluta necessitatibus consectetur, totam quae porro a!
-                Fuga repudiandae quia quisquam voluptas, possimus laboriosam distinctio optio id sequi impedit deserunt nihil perferendis iusto suscipit doloribus corrupti sapiente alias ex labore tenetur natus consequatur rem. Quis, molestias iure.</textarea>
-                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="category">
+    <div class="text-center">
+        <div class="container">
+            <div class="btn-group p-1 mt-5 mb-5">
+                <button class="btn hvr-shutter-in-vertical">Comedy</button>
+            </div>
+            <div class="btn-group p-1 mt-5 mb-5">
+                <button class="btn hvr-shutter-in-vertical">Comedy</button>
+            </div>
+            <div class="btn-group p-1 mt-5 mb-5">
+                <button class="btn hvr-shutter-in-vertical">Comedy</button>
+            </div>
+            <div class="btn-group p-1 mt-5 mb-5">
+                <button class="btn hvr-shutter-in-vertical">Comedy</button>
+            </div>
+            <div class="btn-group p-1 mt-5 mb-5">
+                <button class="btn hvr-shutter-in-vertical">Comedy</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container animated zoomIn delay-1s">
+    <div class="row">
+        <div class="col-4">
+            <h2>Details</h2>
+        </div>
+        <div class="col-4 offset-4">
+            <a th:href="@{/main}" class="btn btn-secondary">Return</a>
+        </div>
+    </div>
+
+</div>
+<hr>
+
+<section id="details">
+    <div class="container" style="border: solid 2px orange">
+        <div class="text-center">
+            <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
+            <p class="h2" th:text="${book.title}"></p>
+            <div class="row">
+                <div class="col-5">
+                    <img src="http://s.lubimyczytac.pl/upload/books/4821000/4821058/628377-352x500.jpg" alt="">
+                </div>
+                <div class="col-6 text-left">
+                    <p class="h4"><span class="text-muted">Autor: </span><span th:text="${book.author.name}"></span></p>
+                    <p class="h4"><span class="text-muted">Publisher: </span><span th:text="${book.publisher.name}"></span></p>
+                    <p class="h4"><span class="text-muted">Pages: </span><span th:text="${book.pages}"></span></p>
+                    <hr>
+                    <p class="h3">Price: <span th:text="'$'+${book.price}"></span></p>
+                    <div class="form-group">
+                         <textarea class="form-control" rows="12" th:text="${book.description}"></textarea>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+        </div>
+        <hr>
+        <footer class="pb-2">
+            <div class="col-5 offset-7">
                 <button class="btn animated pulse delay-3s" data-dismiss="modal" style="background-color: rgb(231, 86, 19); color:white;"><i
                         class="fa fa-shopping-cart"></i>
                     Add
                     to Cart</button>
                 <button class="btn btn-success" data-dismiss="modal"><i class="fas fa-money-bill"></i> Buy Now</button>
             </div>
-        </div>
+        </footer>
     </div>
-</div>
+</section>
+
+
+
+
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+
+<script>
+
+</script>
 </body>
+
 </html>
