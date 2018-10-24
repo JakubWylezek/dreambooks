@@ -3,6 +3,7 @@ package com.dreambooks.controller;
 import com.dreambooks.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -20,4 +21,6 @@ public class MainPageController {
 
         return "/mainpage/index";
     }
+
+
 }

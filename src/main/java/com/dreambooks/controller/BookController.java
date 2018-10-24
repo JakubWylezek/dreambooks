@@ -7,9 +7,7 @@ import com.dreambooks.service.PublisherService;
 import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BookController {
@@ -23,6 +21,7 @@ public class BookController {
         this.authorService = authorService;
         this.publisherService = publisherService;
     }
+
     @RequestMapping("/adminpanel/books")
     public String getAllBooks(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
@@ -59,5 +58,13 @@ public class BookController {
         bookService.deleteBook(new Long(id));
 
         return "redirect:/adminpanel/books";
+    }
+
+
+    @GetMapping(value = "/main/book/{id}")
+    public String getMainBookById(String id, Model model) {
+        model.addAttribute("book", bookService.getBookById(new Long(id)));
+
+        return "/mainpage/bookdetails";
     }
 }
