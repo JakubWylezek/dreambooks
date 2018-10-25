@@ -3,6 +3,7 @@ package com.dreambooks.controller;
 import com.dreambooks.model.Book;
 import com.dreambooks.service.AuthorService;
 import com.dreambooks.service.BookService;
+import com.dreambooks.service.CategoryService;
 import com.dreambooks.service.PublisherService;
 import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
@@ -15,11 +16,13 @@ public class BookController {
     private BookService bookService;
     private AuthorService authorService;
     private PublisherService publisherService;
+    private CategoryService categoryService;
 
-    public BookController(BookService bookService, AuthorService authorService, PublisherService publisherService) {
+    public BookController(BookService bookService, AuthorService authorService, PublisherService publisherService, CategoryService categoryService) {
         this.bookService = bookService;
         this.authorService = authorService;
         this.publisherService = publisherService;
+        this.categoryService = categoryService;
     }
 
     @RequestMapping("/adminpanel/books")
@@ -42,6 +45,7 @@ public class BookController {
         model.addAttribute("book", bookService.getBookById(new Long(id)));
         model.addAttribute("authors", authorService.getAllAuthors());
         model.addAttribute("publishers", publisherService.getAllPublishers());
+        model.addAttribute("categories", categoryService.getAllCategories());
 
         return "/adminpanel/bookdetails";
     }

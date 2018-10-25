@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(exclude = {"author", "publisher"})
+@EqualsAndHashCode(exclude = {"author", "publisher", "category"})
 @Entity
 public class Book {
 
@@ -29,14 +29,7 @@ public class Book {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Publisher publisher;
 
-/*
-    @ManyToMany
-    @JoinTable(
-            name = "book_category",
-            joinColumns = {@JoinColumn(name = "book_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Category category;
 
-    )
-    private Set<Category> categories = new HashSet<>();
-*/
 }

@@ -14,7 +14,6 @@ import java.util.Set;
 public class BookService {
 
     private BookRepository bookRepository;
-
     private AuthorService authorService;
     private PublisherService publisherService;
 
@@ -51,19 +50,7 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public void updateBook(Book book) {
-        bookRepository.save(book);
-    }
 
-    public Set<Book> getBooksByAuthor(String nameOfAuthor) {
-        Author author = authorService.findByName(nameOfAuthor);
-        return author.getBooks();
-    }
-
-    public Set<Book> getBooksByPublisher(String nameOfPublisher) {
-        Publisher publisher = publisherService.findByName(nameOfPublisher);
-        return publisher.getBooks();
-    }
 
     public Set<Book> getBooksByTitle(String title) {
         return bookRepository.findBooksWithPartOfNames(title);

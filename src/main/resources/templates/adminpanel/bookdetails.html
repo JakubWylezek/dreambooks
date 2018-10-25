@@ -159,6 +159,14 @@
                     </div>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label>Category</label>
+                  <select th:field="*{category.description}" class="form-control">
+                    <!--/*@thymesVar id="category" type="com.dreambooks.model.Category"*/-->
+                    <option th:each="category : ${categories}" th:value="${category.description}" th:text="${category.description}"
+                      th:selected="${category.id == book.category.id}"></option>
+                  </select>
+                </div>
                 <div class="form-row">
                   <div class="col">
                     <div class="form-group">
