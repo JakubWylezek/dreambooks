@@ -64,13 +64,15 @@ public class BookController {
     @RequestMapping("/main/book/{id}")
     public String getMainPageBookById(@PathVariable String id, Model model) {
         model.addAttribute("book", bookService.getBookById(new Long(id)));
+        model.addAttribute("searchObjects", new SearchObjects());
 
         return "/mainpage/bookdetails";
     }
 
-    @RequestMapping("/main/books/search")
+    @PostMapping(value = "/main/books/search")
     public String setMainPageSearch(@ModelAttribute SearchObjects searchObjects, Model model) {
         model.addAttribute("books", bookService.getBooksByTitle(searchObjects.getSearchDescription()));
+        model.addAttribute("searchObjects", new SearchObjects());
 
         return "/mainpage/index";
     }

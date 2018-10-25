@@ -16,9 +16,9 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
   <!-- Custom styles for this template -->
-  <link rel="stylesheet" th:href="@{css/main-page.css}">
-  <link rel="stylesheet" th:href="@{css/hover.css}">
-  <link rel="stylesheet" th:href="@{css/animate.css}">
+  <link rel="stylesheet" th:href="@{/css/mainpage.css}">
+  <link rel="stylesheet" th:href="@{/css/hover.css}">
+  <link rel="stylesheet" th:href="@{/css/animate.css}">
 
 </head>
 
@@ -49,7 +49,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <img src="img/logo.PNG" alt="">
+          <img th:src="@{/img/logo.PNG}" alt="">
         </div>
         <div class="col-md-4 offset-md-4">
           <form class="search" th:object="${searchObjects}" th:action="@{'/main/books/search'}" method="post">

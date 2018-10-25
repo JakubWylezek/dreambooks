@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    @Query("SELECT COUNT(u) FROM User u")
+
+    @Query("SELECT COUNT(b) FROM Book b")
     Long countUsers();
 }
