@@ -66,20 +66,9 @@
 <section id="category">
     <div class="text-center">
         <div class="container">
-            <div class="btn-group p-1 mt-5 mb-5">
-                <button class="btn hvr-shutter-in-vertical">Comedy</button>
-            </div>
-            <div class="btn-group p-1 mt-5 mb-5">
-                <button class="btn hvr-shutter-in-vertical">Comedy</button>
-            </div>
-            <div class="btn-group p-1 mt-5 mb-5">
-                <button class="btn hvr-shutter-in-vertical">Comedy</button>
-            </div>
-            <div class="btn-group p-1 mt-5 mb-5">
-                <button class="btn hvr-shutter-in-vertical">Comedy</button>
-            </div>
-            <div class="btn-group p-1 mt-5 mb-5">
-                <button class="btn hvr-shutter-in-vertical">Comedy</button>
+            <div class="btn-group p-1 mt-5 mb-5" th:each="category : ${categories}">
+                <!--/*@thymesVar id="category" type="com.dreambooks.model.Category"*/-->
+                <a th:href="@{'/main/category/' + ${category.description}}"><button class="btn hvr-shutter-in-vertical" th:text="${category.description}"></button></a>
             </div>
         </div>
     </div>

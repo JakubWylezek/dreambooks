@@ -1,5 +1,6 @@
 package com.dreambooks.service;
 
+import com.dreambooks.model.Book;
 import com.dreambooks.model.Category;
 import com.dreambooks.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,9 @@ public class CategoryService {
         categoryRepository.findAll().iterator().forEachRemaining(categories::add);
 
         return categories;
+    }
+
+    public Category getCategoryByDescription(String description) {
+        return categoryRepository.findByDescription(description);
     }
 }

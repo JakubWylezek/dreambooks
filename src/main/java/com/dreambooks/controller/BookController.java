@@ -80,4 +80,12 @@ public class BookController {
 
         return "/mainpage/index";
     }
+
+    @RequestMapping(value = "/main/category/{description}")
+    public String getMainPageBooksByCategory(@PathVariable String description, Model model) {
+        model.addAttribute("books", bookService.getBooksByCategory(description));
+        model.addAttribute("searchObjects", new SearchObjects());
+
+        return "/mainpage/index";
+    }
 }
