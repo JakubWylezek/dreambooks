@@ -12,14 +12,12 @@ public class AdminPanelController {
     private BookService bookService;
     private AuthorService authorService;
     private PublisherService publisherService;
-    private UserService userService;
     private CategoryService categoryService;
 
-    public AdminPanelController(BookService bookService, AuthorService authorService, PublisherService publisherService, UserService userService, CategoryService categoryService) {
+    public AdminPanelController(BookService bookService, AuthorService authorService, PublisherService publisherService, CategoryService categoryService) {
         this.bookService = bookService;
         this.authorService = authorService;
         this.publisherService = publisherService;
-        this.userService = userService;
         this.categoryService = categoryService;
     }
 
@@ -33,7 +31,6 @@ public class AdminPanelController {
         model.addAttribute("publishers", publisherService.getAllPublishers());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("countBooks", bookService.countAllBooks());
-        model.addAttribute("countUsers", userService.countAllUsers());
 
         return "/adminpanel/index";
     }
