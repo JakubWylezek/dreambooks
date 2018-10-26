@@ -68,6 +68,7 @@ public class BookController {
     @RequestMapping("/main/book/{id}")
     public String getMainPageBookById(@PathVariable String id, Model model) {
         model.addAttribute("book", bookService.getBookById(new Long(id)));
+        model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("searchObjects", new SearchObjects());
 
         return "/mainpage/bookdetails";
@@ -76,6 +77,7 @@ public class BookController {
     @PostMapping(value = "/main/books/search")
     public String setMainPageSearch(@ModelAttribute SearchObjects searchObjects, Model model) {
         model.addAttribute("books", bookService.getBooksByTitle(searchObjects.getSearchDescription()));
+        model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("searchObjects", new SearchObjects());
 
         return "/mainpage/index";
@@ -84,6 +86,7 @@ public class BookController {
     @RequestMapping(value = "/main/category/{description}")
     public String getMainPageBooksByCategory(@PathVariable String description, Model model) {
         model.addAttribute("books", bookService.getBooksByCategory(description));
+        model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("searchObjects", new SearchObjects());
 
         return "/mainpage/index";
