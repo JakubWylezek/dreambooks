@@ -49,7 +49,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img th:src="@{/img/logo.PNG}" alt="">
+                <a th:href="@{/main}"><img th:src="@{/img/logo.PNG}" alt=""></a>
             </div>
             <div class="col-md-4 offset-md-4">
                 <form class="search" th:object="${searchObjects}" th:action="@{'/main/books/search'}" method="post">

@@ -87,7 +87,7 @@
           <div class="col-md-3 col-sm-6 p-10" th:each="book : ${books}">
             <div class="product-grid6">
               <div class="product-image6">
-                <a href="#">
+                <a th:href="@{'/main/book/' + ${book.id}}">
                   <img class="pic-1" th:src="${book.coverURL}">
                 </a>
               </div>
