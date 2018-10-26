@@ -5,7 +5,7 @@ import com.dreambooks.service.CategoryService;
 import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainPageController {
@@ -18,12 +18,11 @@ public class MainPageController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping("/main")
+    @GetMapping( value = "/main")
     public String getMainPage(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("searchObjects", new SearchObjects());
-
         return "/mainpage/index";
     }
 

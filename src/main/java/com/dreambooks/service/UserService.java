@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -27,11 +28,22 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public Set<User> getAllUsers() {
+        Set<User> users = new HashSet<>();
+        userRepository.findAll().iterator().forEachRemaining(users::add);
+
+        return users;
+    }
+
     public User saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         Role userRole = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
+    }
+
+    public Long countAllUsers() {
+        return userRepository.countUsers();
     }
 }
