@@ -25,7 +25,7 @@ public class BookController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping("/adminpanel/books")
+    @GetMapping(value = "/adminpanel/books")
     public String getAllBooks(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
         model.addAttribute("searchObjects", new SearchObjects());
@@ -33,14 +33,14 @@ public class BookController {
         return "/adminpanel/books";
     }
 
-    @RequestMapping("/adminpanel/books/search")
+    @PostMapping(value = "/adminpanel/books/search")
     public String setSearch(@ModelAttribute SearchObjects searchObjects, Model model) {
         model.addAttribute("books", bookService.getBooksByTitle(searchObjects.getSearchDescription()));
 
         return "/adminpanel/books";
     }
 
-    @RequestMapping("/adminpanel/book/{id}")
+    @GetMapping(value = "/adminpanel/book/{id}")
     public String getBookById(@PathVariable String id, Model model) {
         model.addAttribute("book", bookService.getBookById(new Long(id)));
         model.addAttribute("authors", authorService.getAllAuthors());
@@ -50,14 +50,14 @@ public class BookController {
         return "/adminpanel/bookdetails";
     }
 
-    @RequestMapping("/adminpanel/book/save")
+    @PostMapping(value = "/adminpanel/book/save")
     public String saveBook(@ModelAttribute Book book) {
         bookService.saveBook(book);
 
         return "redirect:/adminpanel/books";
     }
 
-    @RequestMapping("/adminpanel/book/delete/{id}")
+    @GetMapping(value = "/adminpanel/book/delete/{id}")
     public String deleteBook(@PathVariable String id) {
         bookService.deleteBook(new Long(id));
 
@@ -65,7 +65,7 @@ public class BookController {
     }
 
 
-    @RequestMapping("/main/book/{id}")
+    @GetMapping(value = "/main/book/{id}")
     public String getMainPageBookById(@PathVariable String id, Model model) {
         model.addAttribute("book", bookService.getBookById(new Long(id)));
         model.addAttribute("categories", categoryService.getAllCategories());
@@ -83,7 +83,7 @@ public class BookController {
         return "/mainpage/index";
     }
 
-    @RequestMapping(value = "/main/category/{description}")
+    @GetMapping(value = "/main/category/{description}")
     public String getMainPageBooksByCategory(@PathVariable String description, Model model) {
         model.addAttribute("books", bookService.getBooksByCategory(description));
         model.addAttribute("categories", categoryService.getAllCategories());

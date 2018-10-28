@@ -34,7 +34,7 @@ public class CategoryService {
 
         if(new_category == null)
             categoryRepository.save(category);
-        else
-            book.setCategory(new_category);
+
+        book.setCategory(new_category);
     }
 }

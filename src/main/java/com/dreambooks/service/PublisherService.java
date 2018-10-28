@@ -17,10 +17,6 @@ public class PublisherService {
         this.publisherRepository = publisherRepository;
     }
 
-    public Publisher findByName(String name) {
-        return publisherRepository.findByName(name);
-    }
-
     public Set<Publisher> getAllPublishers() {
         Set<Publisher> publishers = new HashSet<>();
         publisherRepository.findAll().iterator().forEachRemaining(publishers::add);
@@ -33,7 +29,7 @@ public class PublisherService {
 
         if(new_publisher == null)
             publisherRepository.save(publisher);
-        else
-            book.setPublisher(new_publisher);
+
+        book.setPublisher(new_publisher);
     }
 }
