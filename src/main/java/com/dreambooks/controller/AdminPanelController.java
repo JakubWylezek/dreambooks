@@ -1,11 +1,11 @@
 package com.dreambooks.controller;
 
 import com.dreambooks.model.Book;
+import com.dreambooks.repository.UserRepository;
 import com.dreambooks.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AdminPanelController {
@@ -14,12 +14,14 @@ public class AdminPanelController {
     private AuthorService authorService;
     private PublisherService publisherService;
     private CategoryService categoryService;
+    private UserRepository userRepository;
 
-    public AdminPanelController(BookService bookService, AuthorService authorService, PublisherService publisherService, CategoryService categoryService) {
+    public AdminPanelController(BookService bookService, AuthorService authorService, PublisherService publisherService, CategoryService categoryService, UserRepository userRepository) {
         this.bookService = bookService;
         this.authorService = authorService;
         this.publisherService = publisherService;
         this.categoryService = categoryService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping(value = "/adminpanel")
@@ -29,7 +31,8 @@ public class AdminPanelController {
         model.addAttribute("publishers", publisherService.getAllPublishers());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("countBooks", bookService.countAllBooks());
-
+        model.addAttribute("countUsers", userRepository.countUsers());
+        
         return "/adminpanel/index";
     }
 
