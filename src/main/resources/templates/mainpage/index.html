@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 
@@ -27,21 +27,28 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Dreambooks</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/login}">Login</a>
+          <li class="nav-item" sec:authorize="isAnonymous()">
+            <a class="nav-link" th:href="@{/login}">
+              <i class="fas fa-user-check"></i> Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/registration}">Registration</a>
+            <a class="nav-link" th:href="@{/registration}" sec:authorize="isAnonymous()">
+              <i class="fas fa-user-plus"></i> Registration</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/adminpanel}">Admin Panel</a>
+          <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+            <a class="nav-link" th:href="@{/adminpanel}">
+              <i class="fas fa-user-tie"></i> Admin Panel</a>
+          </li>
+          <li class="nav-item dropdown mr-3" sec:authorize="isAuthenticated()">
+            <a href="#" class="nav-link" th:href="@{/logout}">
+              <i class="fas fa-power-off"></i> Logout
+            </a>
           </li>
         </ul>
       </div>
@@ -97,13 +104,12 @@
               </div>
               <div class="product-content">
                 <h5 class="title">
-                  <a href="#" th:text="${book.title}">Men's Shirt</a></h5>
+                  <a href="#" th:text="${book.title}"></a></h5>
                 <div class="price" th:text="'$'+${book.price}">
                 </div>
               </div>
               <ul class="social">
                 <li><a th:href="@{'/main/book/' + ${book.id}}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
               </ul>
             </div>
           </div>

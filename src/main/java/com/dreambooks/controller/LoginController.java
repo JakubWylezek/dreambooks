@@ -24,14 +24,14 @@ public class LoginController {
     @GetMapping(value = "/login")
     public String login(Model model) {
         model.addAttribute("searchObjects", new SearchObjects());
-        return "login";
+        return "/mainpage/login";
     }
 
     @GetMapping(value = "/registration")
     public String registration(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("searchObjects", new SearchObjects());
-        return "registration";
+        return "/mainpage/registration";
     }
 
     @PostMapping(value = "/registration")
@@ -45,7 +45,7 @@ public class LoginController {
         }
         if (bindingResult.hasErrors()) {
             model.addAttribute("searchObjects", new SearchObjects());
-            return "registration";
+            return "/mainpage/registration";
         }
         else {
             userService.saveUser(user);
@@ -53,6 +53,6 @@ public class LoginController {
             model.addAttribute("user", new User());
             model.addAttribute("searchObjects", new SearchObjects());
         }
-        return "registration";
+        return "/mainpage/registration";
     }
 }
