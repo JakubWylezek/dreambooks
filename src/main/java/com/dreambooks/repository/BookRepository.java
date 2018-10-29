@@ -16,5 +16,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
     @Query("SELECT COUNT(b) FROM Book b")
     Long countBooks();
+
+
 }
 

@@ -32,7 +32,7 @@ public class AdminPanelController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("countBooks", bookService.countAllBooks());
         model.addAttribute("countUsers", userRepository.countUsers());
-        
+        model.addAttribute("countCategories", categoryService.countCategories());
         return "/adminpanel/index";
     }
 

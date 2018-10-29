@@ -51,7 +51,7 @@ public class BookService {
         publisherService.isPublisherExist(book, publisher);
 
         Category category = book.getCategory();
-        categoryService.isCtaegoryExist(book, category);
+        categoryService.isCategoryExist(book, category);
 
         bookRepository.save(book);
     }

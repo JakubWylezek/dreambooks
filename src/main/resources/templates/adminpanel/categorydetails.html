@@ -56,7 +56,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1 th:text="${user.name} + ' ' + ${user.lastName}">
+                <h1 th:text="${category.description}">
                 </h1>
             </div>
         </div>
@@ -68,7 +68,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="#" class="btn btn-light btn-block" th:href="@{/adminpanel/users}">
+                <a href="#" class="btn btn-light btn-block" th:href="@{/adminpanel/categories}">
                     <i class="fas fa-arrow-left"></i> Back To Dashboard
                 </a>
             </div>
@@ -78,13 +78,14 @@
                 </button>
             </div>
             <div class="col-md-3">
-                <a href="#" class="btn btn-danger btn-block" th:href="@{'/adminpanel/user/delete/' + ${user.id}}">
-                    <i class="fas fa-trash"></i> Delete User
+                <a href="#" class="btn btn-danger btn-block" th:href="@{'/adminpanel/category/delete/' + ${category.id}}">
+                    <i class="fas fa-trash"></i> Delete Category
                 </a>
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- DETAILS -->
 <section id="details">
@@ -93,66 +94,81 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Edit User</h4>
+                        <h4>Edit Category</h4>
                     </div>
                     <div class="card-body">
-                        <form id="update-form" action="#" th:object="${user}" th:action="@{/adminpanel/user/save}" method="post">
+                        <form id="update-form" action="#" th:object="${category}" th:action="@{/adminpanel/category/save}" method="post">
                             <input type="hidden" th:field="*{id}" class="form-control" />
-                            <div class="form-row">
-                                <div class="col">
                                     <div class="form-group">
-                                        <label>First Name</label>
-                                        <input type="text" class="form-control" placeholder="First Name" th:field="*{name}">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control" placeholder="Description" th:field="*{description}">
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" class="form-control" placeholder="Last Name" th:field="*{lastName}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control" placeholder="Email" th:field="*{email}">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>New Password</label>
-                                        <input type="text" class="form-control" placeholder="Password" value="" th:field="*{password}">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Active</label>
-                                        <select th:field="*{active}" class="form-control">
-                                            <!--/*@thymesVar id="category" type="com.dreambooks.model.Category"*/-->
-                                            <option th:value="1">YES</option>
-                                            <option th:value="0">NO</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Role</label>
-                                        <select id="authorSelect" th:field="*{roles}" class="form-control">
-                                            <!--/*@thymesVar id="role" type="com.dreambooks.model.Role"*/-->
-                                            <option th:value="2">ADMIN</option>
-                                            <option th:value="1">USER</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br>
+<hr>
+<br>
+<!-- BOOKS -->
+<section id="posts">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Books By Category: <span th:text="${category.description}"></span></h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Publisher</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
+                        <tr th:each="book : ${books}">
+                            <td th:text="${book.id}"></td>
+                            <td th:text="${book.title}"></td>
+                            <td th:text="${book.author.name}"></td>
+                            <td th:text="${book.publisher.name}"></td>
+                            <td>
+                                <a href="#" th:href="@{'/adminpanel/book/' + ${book.id}}" class="btn btn-secondary">
+                                    <i class="fas fa-angle-double-right"></i> Details
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- PAGINATION -->
+                    <nav class="ml-4">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <a href="#" class="page-link">Previous</a>
+                            </li>
+                            <li class="page-item active">
+                                <a href="#" class="page-link">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a href="#" class="page-link">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a href="#" class="page-link">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a href="#" class="page-link">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
