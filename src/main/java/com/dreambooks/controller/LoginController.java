@@ -1,13 +1,13 @@
 package com.dreambooks.controller;
 
 import com.dreambooks.model.User;
+import com.dreambooks.repository.UserRepository;
 import com.dreambooks.service.UserService;
 import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -15,9 +15,11 @@ import javax.validation.Valid;
 public class LoginController {
 
     private UserService userService;
+    private UserRepository userRepository;
 
-    public LoginController(UserService userService) {
+    public LoginController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
 

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 public class BookController {
 
@@ -66,28 +68,43 @@ public class BookController {
 
 
     @GetMapping(value = "/main/book/{id}")
-    public String getMainPageBookById(@PathVariable String id, Model model) {
+    public String getMainPageBookById(@PathVariable String id, Model model, Principal principal) {
         model.addAttribute("book", bookService.getBookById(new Long(id)));
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("searchObjects", new SearchObjects());
+
+        if(principal == null)
+            model.addAttribute("user_email", new String(" "));
+        else
+            model.addAttribute("user_email", principal.getName());
 
         return "/mainpage/bookdetails";
     }
 
     @PostMapping(value = "/main/books/search")
-    public String setMainPageSearch(@ModelAttribute SearchObjects searchObjects, Model model) {
+    public String setMainPageSearch(@ModelAttribute SearchObjects searchObjects, Model model, Principal principal) {
         model.addAttribute("books", bookService.getBooksByTitle(searchObjects.getSearchDescription()));
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("searchObjects", new SearchObjects());
+
+        if(principal == null)
+            model.addAttribute("user_email", new String(" "));
+        else
+            model.addAttribute("user_email", principal.getName());
 
         return "/mainpage/index";
     }
 
     @GetMapping(value = "/main/category/{description}")
-    public String getMainPageBooksByCategory(@PathVariable String description, Model model) {
+    public String getMainPageBooksByCategory(@PathVariable String description, Model model, Principal principal) {
         model.addAttribute("books", bookService.getBooksByCategory(description));
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("searchObjects", new SearchObjects());
+
+        if(principal == null)
+            model.addAttribute("user_email", new String(" "));
+        else
+            model.addAttribute("user_email", principal.getName());
 
         return "/mainpage/index";
     }

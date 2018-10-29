@@ -32,6 +32,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
+        <p class="h6" style="color: #e3e3e3;" sec:authorize="isAuthenticated()" th:text="'Welcome: ' + ${user_email}"></p>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item" sec:authorize="isAnonymous()">
             <a class="nav-link" th:href="@{/login}">

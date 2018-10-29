@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
+
+
 @Controller
 public class MainPageController {
 
@@ -19,10 +22,15 @@ public class MainPageController {
     }
 
     @GetMapping( value = "/main")
-    public String getMainPage(Model model) {
+    public String getMainPage(Model model, Principal principal) {
         model.addAttribute("books", bookService.getAllBooks());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("searchObjects", new SearchObjects());
+        if(principal == null)
+            model.addAttribute("user_email", new String(" "));
+        else
+            model.addAttribute("user_email", principal.getName());
+
         return "/mainpage/index";
     }
 
