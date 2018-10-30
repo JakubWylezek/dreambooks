@@ -51,6 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").anonymous()
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/video/**").permitAll()
                 .antMatchers("/main", "/main/**").permitAll()
+                .antMatchers("/bookmark", "/bookmark/**").authenticated()
                 .antMatchers("/adminpanel", "/adminpanel/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")

@@ -20,7 +20,7 @@ public class BookmarkController {
         this.bookService = bookService;
     }
 
-    @GetMapping(value = "/main/bookmark/add/{id}")
+    @GetMapping(value = "/bookmark/add/{id}")
     public String addBookToBookmark(@PathVariable String id, Principal principal) {
         bookmarkService.addBookToBookmark(
                 bookService.getBookById(new Long(id)),
@@ -29,20 +29,20 @@ public class BookmarkController {
         return "redirect:/main";
     }
 
-    @GetMapping(value = "/main/bookmark/books")
+    @GetMapping(value = "/bookmark/books")
     public String getBooksFromBookmark(Model model, Principal principal) {
         model.addAttribute("books", bookmarkService.getBooksFromBookmark(principal.getName()));
 
         return "/mainpage/bookmark";
     }
 
-    @GetMapping(value = "/main/bookmark/delete/{id}")
+    @GetMapping(value = "/bookmark/delete/{id}")
     public String deleteBookFrommBookmark(@PathVariable String id, Principal principal) {
         bookmarkService.deteleBookInBookmark(
                 bookService.getBookById(new Long(id)),
                 principal.getName());
 
-        return "redirect:/main/bookmark/books";
+        return "redirect:/bookmark/books";
 
     }
 }

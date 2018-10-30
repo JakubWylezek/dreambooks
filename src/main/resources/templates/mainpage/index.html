@@ -23,7 +23,6 @@
 </head>
 
 <body>
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -47,7 +46,12 @@
               <i class="fas fa-user-tie"></i> Admin Panel</a>
           </li>
           <li class="nav-item dropdown mr-3" sec:authorize="isAuthenticated()">
-            <a href="#" class="nav-link" th:href="@{/logout}">
+            <a class="nav-link" th:href="@{/bookmark/books}">
+              <i class="fas fa-bookmark"></i> Bookmark
+            </a>
+          </li>
+          <li class="nav-item dropdown mr-3" sec:authorize="isAuthenticated()">
+            <a class="nav-link" th:href="@{/logout}">
               <i class="fas fa-power-off"></i> Logout
             </a>
           </li>
@@ -111,7 +115,7 @@
               </div>
               <ul class="social">
                 <li><a th:href="@{'/main/book/' + ${book.id}}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                <li><a th:href="@{'/main/bookmark/add/' + ${book.id}}" data-tip="Add to Bookmark"><i class="fa fa-search"></i></a></li>
+                <li sec:authorize="isAuthenticated()"><a id="addBookToBookmark" th:href="@{'/bookmark/add/' + ${book.id}}" data-tip="Add to Bookmark"><i class="far fa-thumbs-up"></i></a></li>
               </ul>
             </div>
           </div>
