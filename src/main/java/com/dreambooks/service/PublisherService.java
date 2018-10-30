@@ -29,7 +29,7 @@ public class PublisherService {
 
         if(new_publisher == null)
             publisherRepository.save(publisher);
-
-        book.setPublisher(new_publisher);
+        else
+            book.setPublisher(new_publisher);
     }
 }

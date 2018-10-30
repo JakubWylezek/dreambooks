@@ -32,7 +32,7 @@ public class AuthorService {
 
         if(new_author == null)
             authorRepository.save(author);
-
-        book.setAuthor(new_author);
+        else
+            book.setAuthor(new_author);
     }
 }
