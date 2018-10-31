@@ -1,4 +1,4 @@
-package com.dreambooks.controller;
+package com.dreambooks.controller.adminpanel;
 
 import com.dreambooks.model.User;
 import com.dreambooks.service.RoleService;

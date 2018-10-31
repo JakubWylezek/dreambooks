@@ -1,4 +1,4 @@
-package com.dreambooks.controller;
+package com.dreambooks.controller.adminpanel;
 
 import com.dreambooks.model.Book;
 import com.dreambooks.repository.UserRepository;

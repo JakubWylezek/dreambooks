@@ -1,36 +1,26 @@
-package com.dreambooks.controller;
+package com.dreambooks.controller.mainpage;
 
 import com.dreambooks.model.User;
-import com.dreambooks.repository.UserRepository;
 import com.dreambooks.service.BookService;
 import com.dreambooks.service.UserService;
 import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
 @Controller
-public class LoginController {
+public class RegistrationController {
 
-    private UserService userService;
-    private UserRepository userRepository;
     private BookService bookService;
+    private UserService userService;
 
-    public LoginController(UserService userService, UserRepository userRepository, BookService bookService) {
-        this.userService = userService;
-        this.userRepository = userRepository;
+    public RegistrationController(BookService bookService, UserService userService) {
         this.bookService = bookService;
-    }
-
-
-    @GetMapping(value = "/login")
-    public String login(Model model) {
-        model.addAttribute("searchObjects", new SearchObjects());
-        model.addAttribute("book", bookService.getRandomBook());
-        return "/mainpage/login";
+        this.userService = userService;
     }
 
     @GetMapping(value = "/registration")

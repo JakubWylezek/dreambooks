@@ -1,4 +1,4 @@
-package com.dreambooks.controller;
+package com.dreambooks.controller.adminpanel;
 
 import com.dreambooks.model.Category;
 import com.dreambooks.service.BookService;
@@ -7,13 +7,9 @@ import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Set;
 
 @Controller
 public class CategoryController {

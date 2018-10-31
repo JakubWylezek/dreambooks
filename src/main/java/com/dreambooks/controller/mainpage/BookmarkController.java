@@ -1,4 +1,4 @@
-package com.dreambooks.controller;
+package com.dreambooks.controller.mainpage;
 
 import com.dreambooks.service.BookService;
 import com.dreambooks.service.BookmarkService;
