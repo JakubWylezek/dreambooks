@@ -101,7 +101,7 @@
               <h4>Edit Book</h4>
             </div>
             <div class="card-body">
-              <form id="update-form" action="#" th:object="${book}" th:action="@{/adminpanel/book/save}" method="post">
+              <form id="update-form" action="#" th:object="${book}" th:action="@{/adminpanel/book/update}" method="post">
                 <input type="hidden" th:field="*{id}" class="form-control" />
                 <div class="form-group">
                   <label>Title</label>

@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/adminpanel/users")
-    public String getAllBooks(Model model) {
+    public String getAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("searchObjects", new SearchObjects());
 
@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/adminpanel/user/{id}")
-    public String getBookById(@PathVariable String id, Model model) {
+    public String getUserById(@PathVariable String id, Model model) {
         model.addAttribute("user", userService.getUserById(new Long(id)));
         model.addAttribute("roles", roleService.getAllRoles());
 
@@ -42,13 +42,23 @@ public class UserController {
     }
 
     @GetMapping(value = "/adminpanel/user/delete/{id}")
-    public String deleteBook(@PathVariable String id) {
+    public String deleteUser(@PathVariable String id) {
         userService.deleteUser(new Long(id));
 
         return "redirect:/adminpanel/users";
     }
 
     @PostMapping(value = "/adminpanel/user/save")
+    public String saveUser(@Valid User user, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors())
+            return "redirect:/adminpanel";
+
+        userService.updateUser(user);
+        return "redirect:/adminpanel/users";
+    }
+
+    @PostMapping(value = "/adminpanel/user/update")
     public String saveBook(@Valid User user, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors())

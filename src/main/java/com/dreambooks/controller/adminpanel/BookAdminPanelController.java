@@ -56,11 +56,21 @@ public class BookAdminPanelController {
         return "/adminpanel/bookdetails";
     }
 
+    @PostMapping(value = "/adminpanel/book/update")
+    public String updateBook(@Valid Book book, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors())
+            return "redirect:/adminpanel/book/" + book.getId();
+
+        bookService.saveBook(book);
+        return "redirect:/adminpanel/books";
+    }
+
     @PostMapping(value = "/adminpanel/book/save")
     public String saveBook(@Valid Book book, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors())
-            return "redirect:/adminpanel/book/" + book.getId();
+            return "redirect:/adminpanel";
 
         bookService.saveBook(book);
         return "redirect:/adminpanel/books";

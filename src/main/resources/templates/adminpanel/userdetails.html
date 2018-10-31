@@ -101,7 +101,7 @@
                         <h4>Edit User</h4>
                     </div>
                     <div class="card-body">
-                        <form id="update-form" action="#" th:object="${user}" th:action="@{/adminpanel/user/save}" method="post">
+                        <form id="update-form" action="#" th:object="${user}" th:action="@{/adminpanel/user/update}" method="post">
                             <input type="hidden" th:field="*{id}" class="form-control" />
                             <div class="form-row">
                                 <div class="col">
@@ -131,9 +131,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
                             <div class="form-row">
                                 <div class="col">
                                     <div class="form-group">

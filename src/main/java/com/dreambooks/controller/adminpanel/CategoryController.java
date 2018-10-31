@@ -43,11 +43,22 @@ public class CategoryController {
         return "redirect:/adminpanel/categories";
     }
 
+    @PostMapping(value = "/adminpanel/category/update")
+    public String updateBook(@Valid Category category, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors())
+            return "redirect:/adminpanel/category/" + category.getId();
+
+        categoryService.saveCategory(category);
+        return "redirect:/adminpanel/categories";
+    }
+
+
     @PostMapping(value = "/adminpanel/category/save")
     public String saveBook(@Valid Category category, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors())
-            return "redirect:/adminpanel/category/" + category.getId();
+            return "redirect:/adminpanel";
 
         categoryService.saveCategory(category);
         return "redirect:/adminpanel/categories";

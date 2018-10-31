@@ -1,6 +1,8 @@
 package com.dreambooks.controller.adminpanel;
 
 import com.dreambooks.model.Book;
+import com.dreambooks.model.Category;
+import com.dreambooks.model.User;
 import com.dreambooks.repository.UserRepository;
 import com.dreambooks.service.*;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ public class AdminPanelController {
     @GetMapping(value = "/adminpanel")
     public String getAdminPanel(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("user", new User());
+        model.addAttribute("category", new Category());
         model.addAttribute("authors", authorService.getAllAuthors());
         model.addAttribute("publishers", publisherService.getAllPublishers());
         model.addAttribute("categories", categoryService.getAllCategories());

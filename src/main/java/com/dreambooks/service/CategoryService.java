@@ -53,17 +53,7 @@ public class CategoryService {
 
     public void deleteCategory(Long id) {
         Category category = getCategoryById(id);
-        Category noCategory = getCategoryByDescription("No category");
-        if(noCategory == null) {
-            noCategory.setDescription("No category");
-            categoryRepository.save(category);
-        }
-
-        Set<Book> books = new HashSet<>();
-
-        bookRepository.findAll().iterator().forEachRemaining(books::add);
-        books.stream().filter(book -> book.getCategory().equals(category)).iterator().forEachRemaining(book -> {book.setCategory(noCategory); bookRepository.save(book);});
-
+        checkIfCategoryGetAnyBooks(category);
         categoryRepository.deleteById(id);
     }
 
@@ -73,5 +63,30 @@ public class CategoryService {
 
     public Set<Category> getCategoriesByDescription(String description) {
         return categoryRepository.findCategoriesWithPartOfNames(description);
+    }
+
+    private void checkIfCategoryGetAnyBooks(Category category) {
+        if(!category.getBooks().isEmpty()) {
+
+            Set<Book> books = new HashSet<>();
+            Category tempCategory = createNoCategory(category);
+
+            bookRepository.findAll().iterator().forEachRemaining(books::add);
+            books.stream().filter(book -> book.getCategory().equals(category)).iterator().forEachRemaining(book -> {
+                book.setCategory(tempCategory);
+                bookRepository.save(book);
+            });
+        }
+    }
+
+    private Category createNoCategory(Category category) {
+        Category noCategory = getCategoryByDescription("No category");
+        if(noCategory == null) {
+            noCategory = new Category();
+            noCategory.setDescription("No category");
+            categoryRepository.save(noCategory);
+        }
+
+        return noCategory;
     }
 }
