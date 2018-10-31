@@ -3,12 +3,16 @@ package com.dreambooks.controller;
 import com.dreambooks.model.Category;
 import com.dreambooks.service.BookService;
 import com.dreambooks.service.CategoryService;
+import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class CategoryController {
@@ -24,6 +28,7 @@ public class CategoryController {
     @GetMapping(value = "/adminpanel/categories")
     public String getAllCategories(Model model) {
         model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("searchObjects", new SearchObjects());
         return "/adminpanel/categories";
     }
 
@@ -42,9 +47,12 @@ public class CategoryController {
     }
 
     @PostMapping(value = "/adminpanel/category/save")
-    public String saveBook(@ModelAttribute Category category) {
-        categoryService.saveCategory(category);
+    public String saveBook(@Valid Category category, BindingResult bindingResult) {
 
+        if(bindingResult.hasErrors())
+            return "redirect:/adminpanel/category/" + category.getId();
+
+        categoryService.saveCategory(category);
         return "redirect:/adminpanel/categories";
     }
 }

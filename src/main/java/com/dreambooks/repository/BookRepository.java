@@ -20,5 +20,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     @Query(value = "SELECT * FROM Book ORDER BY RAND() LIMIT 1", nativeQuery = true)
     Book getRandomBook();
 
+
 }
 

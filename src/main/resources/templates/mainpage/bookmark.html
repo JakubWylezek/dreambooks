@@ -80,7 +80,7 @@
                         <td th:text="${book.title}"></td>
                         <td th:text="${book.author.name}"></td>
                         <td th:text="${book.publisher.name}"></td>
-                        <td th:text="${book.price}"></td>
+                        <td th:text="${book.isbn}"></td>
                         <td class="text-center"><a class='btn btn-info btn-xs' th:href="@{'/main/book/' + ${book.id}}"><span class="glyphicon glyphicon-edit"></span>
                             View</a> <a class="btn btn-danger btn-xs" th:href="@{'/bookmark/delete/' + ${book.id}}"><span class="glyphicon glyphicon-remove"></span>
                             Delele</a></td>

@@ -64,5 +64,9 @@ public class UserService{
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
+    
+    public Set<User> getMaxFiveNewUsers() {
+        return userRepository.getMaxFiveNewUsers();
+    }
 
 }

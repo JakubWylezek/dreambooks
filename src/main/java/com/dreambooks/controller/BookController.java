@@ -1,6 +1,8 @@
 package com.dreambooks.controller;
 
+import com.dreambooks.model.Author;
 import com.dreambooks.model.Book;
+import com.dreambooks.model.Publisher;
 import com.dreambooks.service.AuthorService;
 import com.dreambooks.service.BookService;
 import com.dreambooks.service.CategoryService;
@@ -8,8 +10,10 @@ import com.dreambooks.service.PublisherService;
 import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -53,9 +57,12 @@ public class BookController {
     }
 
     @PostMapping(value = "/adminpanel/book/save")
-    public String saveBook(@ModelAttribute Book book) {
-        bookService.saveBook(book);
+    public String saveBook(@Valid Book book, BindingResult bindingResult) {
 
+        if(bindingResult.hasErrors())
+            return "redirect:/adminpanel/book/" + book.getId();
+
+        bookService.saveBook(book);
         return "redirect:/adminpanel/books";
     }
 

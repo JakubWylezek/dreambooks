@@ -85,13 +85,10 @@
     </div>
 </section>
 
-<div class="container animated zoomIn delay-1s">
+<div class="container">
     <div class="row">
         <div class="col-4">
             <h2>Details</h2>
-        </div>
-        <div class="col-4 offset-4">
-            <a th:href="@{/main}" class="btn btn-secondary">Return</a>
         </div>
     </div>
 
@@ -112,7 +109,7 @@
                     <p class="h4"><span class="text-muted">Publisher: </span><span th:text="${book.publisher.name}"></span></p>
                     <p class="h4"><span class="text-muted">Pages: </span><span th:text="${book.pages}"></span></p>
                     <hr>
-                    <p class="h3">Price: <span th:text="'$'+${book.price}"></span></p>
+                    <p class="h3">ISBN: <span th:text="${book.isbn}"></span></p>
                     <div class="form-group">
                          <textarea class="form-control" rows="12" th:text="${book.description}"></textarea>
                     </div>
@@ -122,11 +119,7 @@
         <hr>
         <footer class="pb-2">
             <div class="col-5 offset-7">
-                <button class="btn animated pulse delay-3s" data-dismiss="modal" style="background-color: rgb(231, 86, 19); color:white;"><i
-                        class="fa fa-shopping-cart"></i>
-                    Add
-                    to Cart</button>
-                <button class="btn btn-success" data-dismiss="modal"><i class="fas fa-money-bill"></i> Buy Now</button>
+                <a th:href="@{/main}"  class="btn btn-success">Return</a>
             </div>
         </footer>
     </div>

@@ -61,7 +61,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1 th:text="${user.name} + ' ' + ${user.lastName}">
+                <h1 th:text="${user.firstName} + ' ' + ${user.lastName}">
                 </h1>
             </div>
         </div>
@@ -107,7 +107,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>First Name</label>
-                                        <input type="text" class="form-control" placeholder="First Name" th:field="*{name}">
+                                        <input type="text" class="form-control" placeholder="First Name" th:field="*{firstName}">
                                     </div>
                                 </div>
                                 <div class="col">

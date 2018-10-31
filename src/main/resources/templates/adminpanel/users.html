@@ -104,7 +104,7 @@
               <!--/*@thymesVar id="user" type="com.dreambooks.model.User"*/-->
               <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
+                <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td>
                   <a href="#" th:href="@{'/adminpanel/user/' + ${user.id}}" class="btn btn-secondary">

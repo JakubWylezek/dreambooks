@@ -110,7 +110,7 @@
               <div class="product-content">
                 <h5 class="title">
                   <a href="#" th:text="${book.title}"></a></h5>
-                <div class="price" th:text="'$'+${book.price}">
+                <div class="price" th:text="${book.author.name}">
                 </div>
               </div>
               <ul class="social">

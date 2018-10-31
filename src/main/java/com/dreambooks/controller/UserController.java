@@ -6,10 +6,13 @@ import com.dreambooks.service.UserService;
 import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -46,9 +49,12 @@ public class UserController {
     }
 
     @PostMapping(value = "/adminpanel/user/save")
-    public String saveBook(@ModelAttribute User user) {
-        userService.updateUser(user);
+    public String saveBook(@Valid User user, BindingResult bindingResult) {
 
+        if(bindingResult.hasErrors())
+            return "redirect:/adminpanel/user/" + user.getId();
+
+        userService.updateUser(user);
         return "redirect:/adminpanel/users";
     }
 }
