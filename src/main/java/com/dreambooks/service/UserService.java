@@ -69,4 +69,8 @@ public class UserService{
         return userRepository.getMaxFiveNewUsers();
     }
 
+    public Set<User> getUsersByFirstAndLastName(String name) {
+        return userRepository.findUsersWithPartOfNames(name);
+    }
+
 }

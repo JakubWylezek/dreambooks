@@ -70,4 +70,8 @@ public class CategoryService {
     public void saveCategory(Category category) {
         categoryRepository.save(category);
     }
+
+    public Set<Category> getCategoriesByDescription(String description) {
+        return categoryRepository.findCategoriesWithPartOfNames(description);
+    }
 }

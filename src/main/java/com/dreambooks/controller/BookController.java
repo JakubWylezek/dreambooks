@@ -40,7 +40,7 @@ public class BookController {
     }
 
     @PostMapping(value = "/adminpanel/books/search")
-    public String setSearch(@ModelAttribute SearchObjects searchObjects, Model model) {
+    public String getSearchObject(@ModelAttribute SearchObjects searchObjects, Model model) {
         model.addAttribute("books", bookService.getBooksByTitle(searchObjects.getSearchDescription()));
 
         return "/adminpanel/books";

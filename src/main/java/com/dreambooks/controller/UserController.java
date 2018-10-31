@@ -57,4 +57,12 @@ public class UserController {
         userService.updateUser(user);
         return "redirect:/adminpanel/users";
     }
+
+    @PostMapping(value = "/adminpanel/users/search")
+    public String getSearchObject(@ModelAttribute SearchObjects searchObjects, Model model) {
+        model.addAttribute("users", userService.getUsersByFirstAndLastName(searchObjects.getSearchDescription()));
+
+        return "/adminpanel/users";
+    }
+
 }
