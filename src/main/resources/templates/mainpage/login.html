@@ -105,19 +105,19 @@
                 <div class="text-center">
                     <div class="product-grid6">
                         <div class="product-image6">
-                            <a href="#">
-                                <img class="pic-1" src="http://s.lubimyczytac.pl/upload/books/4821000/4821058/628377-352x500.jpg">
+                            <a th:href="@{'/main/book/' + ${book.id}}">
+                                <img class="pic-1" th:src="${book.coverURL}">
                             </a>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"><a href="#">Men's Shirt</a></h3>
-                            <div class="price">$11.00
-                                <span>$14.00</span>
+                            <h5 class="title">
+                                <a href="#" th:text="${book.title}"></a></h5>
+                            <div class="price" th:text="'$'+${book.price}">
                             </div>
                         </div>
                         <ul class="social">
-                            <li><a href="#bookDetail" data-tip="Quick View" data-toggle="modal" data-target="#bookDetail"><i class="fa fa-search"></i></a></li>
-                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li><a th:href="@{'/main/book/' + ${book.id}}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                            <li sec:authorize="isAuthenticated()"><a id="addBookToBookmark" th:href="@{'/bookmark/add/' + ${book.id}}" data-tip="Add to Bookmark"><i class="far fa-thumbs-up"></i></a></li>
                         </ul>
                     </div>
                 </div>

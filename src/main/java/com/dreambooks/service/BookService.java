@@ -56,8 +56,6 @@ public class BookService {
         bookRepository.save(book);
     }
 
-
-
     public Set<Book> getBooksByTitle(String title) {
         return bookRepository.findBooksWithPartOfNames(title);
     }
@@ -70,5 +68,9 @@ public class BookService {
 
     public Long countAllBooks() {
         return bookRepository.countBooks();
+    }
+
+    public Book getRandomBook() {
+        return bookRepository.getRandomBook();
     }
 }

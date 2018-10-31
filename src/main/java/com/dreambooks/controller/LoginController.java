@@ -2,6 +2,7 @@ package com.dreambooks.controller;
 
 import com.dreambooks.model.User;
 import com.dreambooks.repository.UserRepository;
+import com.dreambooks.service.BookService;
 import com.dreambooks.service.UserService;
 import com.dreambooks.utils.SearchObjects;
 import org.springframework.stereotype.Controller;
@@ -16,16 +17,19 @@ public class LoginController {
 
     private UserService userService;
     private UserRepository userRepository;
+    private BookService bookService;
 
-    public LoginController(UserService userService, UserRepository userRepository) {
+    public LoginController(UserService userService, UserRepository userRepository, BookService bookService) {
         this.userService = userService;
         this.userRepository = userRepository;
+        this.bookService = bookService;
     }
 
 
     @GetMapping(value = "/login")
     public String login(Model model) {
         model.addAttribute("searchObjects", new SearchObjects());
+        model.addAttribute("book", bookService.getRandomBook());
         return "/mainpage/login";
     }
 
@@ -33,6 +37,7 @@ public class LoginController {
     public String registration(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("searchObjects", new SearchObjects());
+        model.addAttribute("book", bookService.getRandomBook());
         return "/mainpage/registration";
     }
 

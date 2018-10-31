@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface BookmarkRepository extends CrudRepository<Bookmark, Long> {
 
     Bookmark findByUser(User user);
+
+
 }
