@@ -95,8 +95,8 @@
 </div>
 <hr>
 
-<section id="details">
-    <div class="container" style="border: solid 2px orange">
+<section id="details" class="mb-2">
+    <div class="container pl-0 pr-0" style="border: solid 2px orange; background-color: white;">
         <div class="text-center">
             <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
             <p class="h2" th:text="${book.title}"></p>
@@ -116,10 +116,11 @@
                 </div>
             </div>
         </div>
-        <hr>
-        <footer class="pb-2">
-            <div class="col-5 offset-7">
-                <a th:href="@{/main}"  class="btn btn-success">Return</a>
+        <hr style="background-color: orangered;">
+        <footer style="height: 50px;">
+            <div style="float: right;" class="pr-5">
+                <a sec:authorize="isAuthenticated()" th:href="@{'/bookmark/add/' + ${book.id}}"  class="btn btn-success">Add to bookmark</a>
+                <a th:href="@{/main}"  class="btn btn-secondary">Return</a>
             </div>
         </footer>
     </div>

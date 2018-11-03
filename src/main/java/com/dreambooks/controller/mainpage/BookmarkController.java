@@ -32,6 +32,7 @@ public class BookmarkController {
     @GetMapping(value = "/bookmark/books")
     public String getBooksFromBookmark(Model model, Principal principal) {
         model.addAttribute("books", bookmarkService.getBooksFromBookmark(principal.getName()));
+        model.addAttribute("user_email", principal.getName());
 
         return "/mainpage/bookmark";
     }

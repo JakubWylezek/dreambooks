@@ -75,42 +75,42 @@
 
 <hr>
 
-<section id="registration">
+<section id="registration" class="m-5">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7" style="background-color: white;">
-                <form id="addUserForm" autocomplete="off" th:action="@{/registration}" th:object="${user}" method="post">
+            <div class="col-lg-7" style="background-color: white; position: relative;" >
+                <form id="userRegistration" autocomplete="off" th:action="@{/registration}" th:object="${user}" method="post">
                     <h2 class="mb-4" style="color: orangered;">Registration</h2>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
                         <input class="form-control" type="text" placeholder="Name" th:field="*{firstName}">
-                        <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="validation-message"></label>
                     </div>
+                    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="validation-message"></p>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
                         <input class="form-control" type="text" placeholder="Last Name" th:field="*{lastName}">
-                        <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message"></label>
                     </div>
+                    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message"></p>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
                         <input class="form-control" type="email" placeholder="Email" th:field="*{email}">
-                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
                     </div>
+                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></p>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         </div>
                         <input class="form-control" type="password" placeholder="Password" th:field="*{password}">
-                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
                     </div>
-                    <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
-                    <button type="submit" class="btn btn-primary" style="float: right; ">Sing Up</button>
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></p>
+                    <h6><a th:href="@{/login}" class="text-success" th:utext="${successMessage}"></a></h6>
+                    <button type="submit" class="btn btn-success" style="float: right; ">Sing Up</button>
                 </form>
             </div>
             <div class="col-lg-4 offset-1">
@@ -124,11 +124,11 @@
                         <div class="product-content">
                             <h5 class="title">
                                 <a href="#" th:text="${book?.title}"></a></h5>
-                            <div class="price" th:text="${book?.author?.name}">
+                            <div class="author" th:text="${book?.author?.name}">
                             </div>
                         </div>
                         <ul class="social">
-                            <li><a th:href="@{'/main/book/' + ${book?.id}}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                            <li><a th:href="@{'/main/book/' + ${book?.id}}" data-tip="More Info"><i class="fa fa-search"></i></a></li>
                          </ul>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright 2018 &copy; Dreambooks</p>
     </div>
     <!-- /.container -->
 </footer>

@@ -42,11 +42,13 @@ public class RegistrationController {
         }
         if (bindingResult.hasErrors()) {
             model.addAttribute("searchObjects", new SearchObjects());
+            model.addAttribute("book", bookService.getRandomBook());
             return "/mainpage/registration";
         }
         else {
             userService.saveUser(user);
-            model.addAttribute("successMessage", "User has been registered successfully");
+            model.addAttribute("successMessage", "Successful registered. Please go to login page");
+            model.addAttribute("book", bookService.getRandomBook());
             model.addAttribute("user", new User());
             model.addAttribute("searchObjects", new SearchObjects());
         }

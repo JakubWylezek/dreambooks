@@ -230,12 +230,12 @@ button {
 .product-grid6 .title a:hover {
   color: #2e86de;
 }
-.product-grid6 .price {
+.product-grid6 .author {
   font-size: 18px;
   font-weight: 600;
   color: rgb(231, 86, 19);
 }
-.product-grid6 .price span {
+.product-grid6 .author span {
   color: #999;
   font-size: 15px;
   font-weight: 400;
@@ -324,8 +324,9 @@ button {
   background-color: rgb(231, 86, 19);
   text-align: center;
   width: 100%;
+  padding-top: 5px;
   padding-bottom: 10px;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
 
 .h3 span {
@@ -336,7 +337,18 @@ button {
   background-color: white;
 }
 
+#login {
+  position: relative;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 100%;
+}
 
+#userRegistration {
+  position: relative;
+  top: 40%;
+  transform: translateY(-50%); width: 100%
+}
 
 
 

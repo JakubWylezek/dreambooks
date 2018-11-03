@@ -75,10 +75,10 @@
 
 <hr>
 
-<section id="registration">
+<section id="registration" class="m-5">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7" style="background-color: white;">
+            <div class="col-lg-7" style="background-color: white; max-height: 300px;">
                 <form id="login" th:action="@{/login}" method="POST">
                     <h2 class="mb-4" style="color: orangered;">Login</h2>
                     <div class="input-group mb-3">
@@ -112,11 +112,11 @@
                         <div class="product-content">
                             <h5 class="title">
                                 <a href="#" th:text="${book?.title}"></a></h5>
-                            <div class="price" th:text="${book?.author?.name}">
+                            <div class="author" th:text="${book?.author?.name}">
                             </div>
                         </div>
                         <ul class="social">
-                            <li><a th:href="@{'/main/book/' + ${book?.id}}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                            <li><a th:href="@{'/main/book/' + ${book?.id}}" data-tip="More Info"><i class="fa fa-search"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright 2018 &copy; Dreambooks</p>
     </div>
     <!-- /.container -->
 </footer>

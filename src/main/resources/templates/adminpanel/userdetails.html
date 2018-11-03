@@ -169,7 +169,7 @@
                 <p class="lead text-center">
                     Copyright &copy;
                     <span id="year"></span>
-                    Jakub Wylężek
+                    Dreambooks
                 </p>
             </div>
         </div>
@@ -187,21 +187,6 @@
 <script th:src="@{/js/script.js}"></script>
 
 <script>
-    // Get the current year for the copyright
-    document.getElementById('authorBox').onchange = function () {
-        document.getElementById('authorInput').disabled = !this.checked;
-        document.getElementById('authorSelect').disabled = this.checked;
-    }
-
-    document.getElementById('publisherBox').onchange = function () {
-        document.getElementById('publisherInput').disabled = !this.checked;
-        document.getElementById('publisherSelect').disabled = this.checked;
-    }
-
-    CKEDITOR.replace('editor1');
-
-
-
 </script>
 </body>
 
