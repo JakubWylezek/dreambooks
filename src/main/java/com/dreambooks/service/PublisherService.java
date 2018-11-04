@@ -24,8 +24,12 @@ public class PublisherService {
         return publishers;
     }
 
+    public Publisher findByName(String name) {
+        return publisherRepository.findByName(name);
+    }
+
     public void isPublisherExist(Book book, Publisher publisher) {
-        Publisher new_publisher = publisherRepository.findByName(publisher.getName());
+        Publisher new_publisher = findByName(publisher.getName());
 
         if(new_publisher == null)
             publisherRepository.save(publisher);

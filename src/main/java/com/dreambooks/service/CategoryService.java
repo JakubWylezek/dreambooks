@@ -65,7 +65,7 @@ public class CategoryService {
         return categoryRepository.findCategoriesWithPartOfNames(description);
     }
 
-    private void checkIfCategoryGetAnyBooks(Category category) {
+    public void checkIfCategoryGetAnyBooks(Category category) {
         if(!category.getBooks().isEmpty()) {
 
             Set<Book> books = new HashSet<>();
@@ -79,7 +79,7 @@ public class CategoryService {
         }
     }
 
-    private Category createNoCategory(Category category) {
+    public Category createNoCategory(Category category) {
         Category noCategory = getCategoryByDescription("No category");
         if(noCategory == null) {
             noCategory = new Category();

@@ -27,12 +27,12 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <p class="h6" style="color: #e3e3e3;" sec:authorize="isAuthenticated()" th:text="'Welcome: ' + ${user_email}"></p>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <p class="h6" style="color: #e3e3e3;" sec:authorize="isAuthenticated()" th:text="'Welcome: ' + ${user_email}"></p>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" sec:authorize="isAnonymous()">
                     <a class="nav-link" th:href="@{/login}">
@@ -47,7 +47,12 @@
                         <i class="fas fa-user-tie"></i> Admin Panel</a>
                 </li>
                 <li class="nav-item dropdown mr-3" sec:authorize="isAuthenticated()">
-                    <a href="#" class="nav-link" th:href="@{/logout}">
+                    <a class="nav-link" th:href="@{/bookmark/books}">
+                        <i class="fas fa-bookmark"></i> Bookmark
+                    </a>
+                </li>
+                <li class="nav-item dropdown mr-3" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/logout}">
                         <i class="fas fa-power-off"></i> Logout
                     </a>
                 </li>
