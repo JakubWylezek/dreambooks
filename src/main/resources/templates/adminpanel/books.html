@@ -14,6 +14,8 @@
 </head>
 
 <body>
+<!--/*@thymesVar id="books" type="com.dreambooks.model.Book"*/-->
+<!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
       <a href="#" class="navbar-brand" th:href="@{'/adminpanel'}">Dreambooks Admin Panel</a>
@@ -105,7 +107,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
                 <tr th:each="book : ${books}">
                   <td th:text="${book.id}"></td>
                   <td th:text="${book.title}"></td>

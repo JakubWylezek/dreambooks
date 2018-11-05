@@ -16,6 +16,6 @@ public class Bookmark {
     @OneToOne
     private User user;
 
-    @OneToMany
+    @ManyToMany
     private Set<Book> books;
 }

@@ -16,6 +16,7 @@
 <body>
 
 <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
+<!--/*@thymesVar id="user" type="com.dreambooks.model.User"*/-->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
         <a href="#" class="navbar-brand" th:href="@{'/adminpanel'}">Dreambooks Admin Panel</a>
@@ -117,20 +118,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control" placeholder="Email" th:field="*{email}">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" placeholder="Email" th:field="*{email}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-2">
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <label class="form-check-label mr-2">
+                                                    <input id="passwordBox" type="checkbox" class="form-check-input" /> New Password
+                                                </label>
+                                            </div>
+                                                <input id="newPassword" type="text" class="form-control" placeholder="Password" value=""  th:field="*{password}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>New Password</label>
-                                        <input type="text" class="form-control" placeholder="Password" value="" th:field="*{password}">
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-row">
                                 <div class="col">
                                     <div class="form-group">
@@ -187,6 +194,19 @@
 <script th:src="@{/js/script.js}"></script>
 
 <script>
+
+   var password = document.getElementById('newPassword').value;
+
+   document.getElementById('passwordBox').onchange = function () {
+       if(this.checked) {
+           document.getElementById('newPassword').value = '';
+       }
+
+       if(!this.checked) {
+           document.getElementById('newPassword').value = password;
+       }
+   }
+
 </script>
 </body>
 

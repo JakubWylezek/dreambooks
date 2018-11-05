@@ -6,6 +6,7 @@ import com.dreambooks.model.User;
 import com.dreambooks.repository.BookmarkRepository;
 import com.dreambooks.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
