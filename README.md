@@ -1,5 +1,4 @@
 # Dreambooks - book catalog 
-============= 
 Simple book catalog app with an admin panel created with Spring MySQL Bootstrap
 
 ## Table of contents
