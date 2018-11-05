@@ -44,6 +44,14 @@ public class UserService{
         bookmarkService.connectBookmarkToUser(user, bookmark);
     }
 
+    public void createUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        Bookmark bookmark = new Bookmark();
+        user.setBookmark(bookmark);
+
+        userRepository.save(user);
+        bookmarkService.connectBookmarkToUser(user, bookmark);
+    }
     public Set<User> getAllUsers() {
         Set<User> users = new HashSet<>();
         userRepository.findAll().iterator().forEachRemaining(users::add);

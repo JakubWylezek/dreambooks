@@ -54,7 +54,7 @@ public class UserController {
         if(bindingResult.hasErrors())
             return "redirect:/adminpanel";
 
-        userService.updateUser(user);
+        userService.createUser(user);
         return "redirect:/adminpanel/users";
     }
 
