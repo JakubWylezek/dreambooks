@@ -77,7 +77,7 @@ Project is: in progress
 * I still have to work on the responsiveness of the site, it is terribly bad :)
 
 ## Inspiration
-Security Application security inspired by [Gustavo Ponce](https://github.com/gustavoponce7)
+Security Application inspired by [Gustavo Ponce](https://github.com/gustavoponce7)
 
 Admin Panel inspired by [Brad Traversy](https://github.com/bradtraversy)
 
