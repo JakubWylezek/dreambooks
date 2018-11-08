@@ -54,7 +54,7 @@ Project is created with:
         * Update/Delete book
         * Display books assigned to categories
     * Users
-        * Search user by last name
+        * Search user by first name or last name
         * Update/Delete user
             * Unactive user 
             * Change role
