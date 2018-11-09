@@ -59,10 +59,20 @@ public class UserController {
     }
 
     @PostMapping(value = "/adminpanel/user/update")
-    public String saveBook(@Valid User user, BindingResult bindingResult) {
+    public String updateUser(@Valid User user, BindingResult bindingResult, Model model) {
+        User userExists = userService.findUserByEmail(user.getEmail());
 
-        if(bindingResult.hasErrors())
-            return "redirect:/adminpanel/user/" + user.getId();
+        if (userExists != null) {
+            bindingResult
+                    .rejectValue("email", "error.user",
+                            "There is already a user registered with the email provided");
+        }
+
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("roles", roleService.getAllRoles());
+            return "/adminpanel/userdetails";
+        }
+
 
         userService.updateUser(user);
         return "redirect:/adminpanel/users";

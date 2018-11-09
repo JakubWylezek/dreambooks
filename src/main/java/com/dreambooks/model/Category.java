@@ -18,7 +18,7 @@ public class Category {
     private Long id;
 
     @NotNull
-    @Length(min = 1)
+    @Length(min = 1, message = "Please provide a description")
     private String description;
 
     @OneToMany(mappedBy = "category")

@@ -44,10 +44,13 @@ public class CategoryController {
     }
 
     @PostMapping(value = "/adminpanel/category/update")
-    public String updateBook(@Valid Category category, BindingResult bindingResult) {
+    public String updateBook(@Valid Category category, BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors())
-            return "redirect:/adminpanel/category/" + category.getId();
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("books", bookService.getBooksByCategory(categoryService.getCategoryById(category.getId()).getDescription()));
+            return "/adminpanel/categorydetails";
+        }
+
 
         categoryService.saveCategory(category);
         return "redirect:/adminpanel/categories";

@@ -17,7 +17,7 @@ public class Author {
     private Long id;
 
     @NotNull
-    @Length(min = 1)
+    @Length(min = 1, message = "*Please provide a author")
     private String name;
 
     @OneToMany(mappedBy = "author")

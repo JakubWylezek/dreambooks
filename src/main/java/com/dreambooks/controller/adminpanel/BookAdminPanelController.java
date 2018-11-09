@@ -57,10 +57,15 @@ public class BookAdminPanelController {
     }
 
     @PostMapping(value = "/adminpanel/book/update")
-    public String updateBook(@Valid Book book, BindingResult bindingResult) {
+    public String updateBook(@Valid Book book, BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors())
-            return "redirect:/adminpanel/book/" + book.getId();
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("authors", authorService.getAllAuthors());
+            model.addAttribute("publishers", publisherService.getAllPublishers());
+            model.addAttribute("categories", categoryService.getAllCategories());
+
+            return "/adminpanel/bookdetails";
+        }
 
         bookService.saveBook(book);
         return "redirect:/adminpanel/books";

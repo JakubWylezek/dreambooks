@@ -145,3 +145,9 @@ body {
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+
+/* VALIDATION */
+
+.validation-message {
+  color: #d41b19;
+}

@@ -16,6 +16,7 @@
 <body>
 <!--/*@thymesVar id="books" type="com.dreambooks.model.Book"*/-->
 <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
+<!--/*@thymesVar id="category" type="com.dreambooks.model.Category"*/-->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
         <a href="#" class="navbar-brand" th:href="@{'/adminpanel'}">Dreambooks Admin Panel</a>
@@ -107,6 +108,7 @@
                                     <div class="form-group">
                                         <label>Description</label>
                                         <input type="text" class="form-control" placeholder="Description" th:field="*{description}">
+                                        <p class="validation-message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
                                     </div>
                         </form>
                     </div>

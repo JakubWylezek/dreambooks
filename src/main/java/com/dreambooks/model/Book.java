@@ -23,10 +23,10 @@ public class Book {
     private Long id;
 
     @NotNull
-    @Length(min = 1)
+    @Length(min = 1, message = "*Please provide a title")
     private String title;
 
-    @URL
+    @URL(message = "*Please provide a URL")
     @NotNull
     private String coverURL;
 

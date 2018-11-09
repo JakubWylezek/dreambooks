@@ -16,6 +16,13 @@
 <body>
 
   <!--/*@thymesVar id="book" type="com.dreambooks.model.Book"*/-->
+  <!--/*@thymesVar id="author" type="com.dreambooks.model.Author"*/-->
+  <!--/*@thymesVar id="authors" type="com.dreambooks.model.Author"*/-->
+  <!--/*@thymesVar id="publisher" type="com.dreambooks.model.Publisher"*/-->
+  <!--/*@thymesVar id="publishers" type="com.dreambooks.model.Publisher"*/-->
+  <!--/*@thymesVar id="category" type="com.dreambooks.model.Category"*/-->
+  <!--/*@thymesVar id="categories" type="com.dreambooks.model.Category"*/-->
+
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
       <a href="#" class="navbar-brand" th:href="@{'/adminpanel'}">Dreambooks Admin Panel</a>
@@ -106,13 +113,13 @@
                 <div class="form-group">
                   <label>Title</label>
                   <input type="text" class="form-control" th:field="*{title}" />
+                  <p class="validation-message" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
                 </div>
                 <div class="form-group">
                   <label>Author</label>
                   <div class="form-row">
                     <div class="col-lg-6">
                       <select id="authorSelect" th:field="*{author.name}" class="form-control">
-                        <!--/*@thymesVar id="author" type="com.dreambooks.model.Author"*/-->
                         <option th:each="author : ${authors}" th:value="${author.name}" th:text="${author.name}"
                           th:selected="${author.id == book.author.id}"></option>
                       </select>
@@ -126,16 +133,17 @@
                         </div>
                         <input id="authorInput" class="form-control mr-2" type="text" placeholder="New Author" th:field="*{author.name}"
                           disabled />
+                        <p class="validation-message" th:if="${#fields.hasErrors('author.name')}" th:errors="*{author.name}"></p>
                       </div>
                     </div>
                   </div>
+
                 </div>
                 <div class="form-group">
                   <label>Publisher</label>
                   <div class="form-row">
                     <div class="col-lg-6">
                       <select id="publisherSelect" th:field="*{publisher.name}" class="form-control">
-                        <!--/*@thymesVar id="publisher" type="com.dreambooks.model.Publisher"*/-->
                         <option th:each="publisher : ${publishers}" th:value="${publisher.name}" th:text="${publisher.name}"
                           th:selected="${publisher.id == book.publisher.id}"></option>
                       </select>
@@ -147,8 +155,9 @@
                             <input id="publisherBox" type="checkbox" class="form-check-input" /> New Publisher
                           </label>
                         </div>
-                        <input id="publisherInput" class="form-control mr-2" type="text" placeholder="New Publisher"
-                          th:field="*{publisher.name}" disabled />
+                        <input id="publisherInput" class="form-control mr-2 ml-1" type="text" placeholder="New Publisher"
+                        th:field="*{publisher.name}" disabled />
+                        <p class="validation-message" th:if="${#fields.hasErrors('publisher.name')}" th:errors="*{publisher.name}"></p>
                       </div>
                     </div>
                   </div>
@@ -156,7 +165,6 @@
                 <div class="form-group">
                   <label>Category</label>
                   <select th:field="*{category.description}" class="form-control">
-                    <!--/*@thymesVar id="category" type="com.dreambooks.model.Category"*/-->
                     <option th:each="category : ${categories}" th:value="${category.description}" th:text="${category.description}"
                       th:selected="${category.id == book.category.id}"></option>
                   </select>
