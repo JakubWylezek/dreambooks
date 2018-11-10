@@ -61,8 +61,8 @@ public class UserController {
     @PostMapping(value = "/adminpanel/user/update")
     public String updateUser(@Valid User user, BindingResult bindingResult, Model model) {
         User userExists = userService.findUserByEmail(user.getEmail());
-
-        if (userExists != null) {
+        User tempUser = userService.getUserById(user.getId());
+        if (!tempUser.getEmail().equals(user.getEmail()) && userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
                             "There is already a user registered with the email provided");
