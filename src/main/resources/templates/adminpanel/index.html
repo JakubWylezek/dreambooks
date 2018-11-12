@@ -16,6 +16,44 @@
 <body>
 <!--/*@thymesVar id="user" type="com.dreambooks.model.User"*/-->
 <!--/*@thymesVar id="users" type="com.dreambooks.model.User"*/-->
+<div th:if="${#fields.hasErrors('${book.title}')}" class="error alert alert-danger alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <span th:errors="${book.title}"></span>
+</div>
+<div th:if="${#fields.hasErrors('${book.author}')}" class="error alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <span th:errors="${author.name}"></span>
+</div>
+<div th:if="${#fields.hasErrors('${book.publisher}')}" class="error alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <span th:errors="${publisher.name}"></span>
+</div>
+
+<div th:if="${#fields.hasErrors('${category.*}')}" class="error alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <span th:errors="${category.description}"></span>
+</div>
+
+<div th:if="${#fields.hasErrors('${user.firstName}')}" class="error alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <span th:errors="${user.firstName}"></span>
+</div>
+<div th:if="${#fields.hasErrors('${user.lastName}')}" class="error alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <span th:errors="${user.lastName}"></span> </br>
+</div>
+<div th:if="${#fields.hasErrors('${user.password}')}" class="error alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <span th:errors="${user.password}"></span> </br>
+</div>
+<div th:if="${#fields.hasErrors('${user.email}')}" class="error alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <span th:errors="${user.email}"></span>
+</div>
+
+
+
+
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
       <a href="#" class="navbar-brand" th:href="@{'/adminpanel'}">Dreambooks Admin Panel</a>

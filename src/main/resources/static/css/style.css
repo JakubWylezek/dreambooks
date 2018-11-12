@@ -151,3 +151,11 @@ body {
 .validation-message {
   color: #d41b19;
 }
+
+.error {
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}

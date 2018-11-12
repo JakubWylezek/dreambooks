@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -72,10 +73,14 @@ public class BookAdminPanelController {
     }
 
     @PostMapping(value = "/adminpanel/book/save")
-    public String saveBook(@Valid Book book, BindingResult bindingResult) {
+    public String saveBook(@Valid Book book, BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes) {
 
-        if(bindingResult.hasErrors())
-            return "redirect:/adminpanel";
+        if(bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.book", bindingResult);
+            redirectAttributes.addFlashAttribute("book", book);
+            return "redirect:/adminpanel/error";
+        }
 
         bookService.saveBook(book);
         return "redirect:/adminpanel/books";

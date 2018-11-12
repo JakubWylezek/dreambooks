@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -58,10 +59,14 @@ public class CategoryController {
 
 
     @PostMapping(value = "/adminpanel/category/save")
-    public String saveBook(@Valid Category category, BindingResult bindingResult) {
+    public String saveBook(@Valid Category category, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        if(bindingResult.hasErrors())
-            return "redirect:/adminpanel";
+        if(bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.category", bindingResult);
+            redirectAttributes.addFlashAttribute("category", category);
+
+            return "redirect:/adminpanel/error";
+        }
 
         categoryService.saveCategory(category);
         return "redirect:/adminpanel/categories";

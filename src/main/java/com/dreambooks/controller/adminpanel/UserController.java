@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -49,10 +50,22 @@ public class UserController {
     }
 
     @PostMapping(value = "/adminpanel/user/save")
-    public String saveUser(@Valid User user, BindingResult bindingResult) {
+    public String saveUser(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        User userExists = userService.findUserByEmail(user.getEmail());
 
-        if(bindingResult.hasErrors())
-            return "redirect:/adminpanel";
+        if (userExists != null) {
+            bindingResult
+                    .rejectValue("email", "error.user",
+                            "There is already a user registered with the email provided");
+        }
+
+        if(bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", bindingResult);
+            redirectAttributes.addFlashAttribute("user", user);
+
+            return "redirect:/adminpanel/error";
+        }
+
 
         userService.createUser(user);
         return "redirect:/adminpanel/users";
